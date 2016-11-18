@@ -44,11 +44,11 @@
 				$.ajax({ url: infoQueryURL, method: "GET"}).done(function(response) {
 
 					//show in artist div searched for artist info from lastfm
-					// console.log("Searched Artist log: ");
-					// console.log(response);
+					console.log("Searched Artist log: ");
+					console.log(response);
 					$("#searched-artist").empty();
-					$("#searched-artist").append("<h1>" + response.name);
-					$("#searched-artist").append("<input type='checkbox' data-name=" + response.name + "</input>"); //Talk to design team about what needs to happen with "selected" artists
+					$("#searched-artist").append("<h1>" + response.artist.name);
+					//$("#searched-artist").append("<input type='checkbox' data-name=" + response.name + "</input>"); //Talk to design team about what needs to happen with "selected" artists
 					$("#searched-artist").append("<img src=" + response.artist.image[3]["#text"] + ">");
 
 
@@ -84,14 +84,33 @@
 
 					var newDiv = $("<div>");
 
+
+					 var sliderId = 0;
+						function recursive1(sliderId)
+						{
+						  $.get('api url', {}, function(response){
+						    if(!response){ 
+						        $("#slider"+sliderId).html('Currently there is no items in this category');
+						    } else{
+						        if((response.results) && (response.results.length > 0)){
+						            getInfo(response, sliderId);
+
+						        }        
+						    }  
+						    if(sliderId < 6)
+						               recursive(sliderId++)              
+						});     
+						}
+						recursive1(0)
+
 					for (var i=0; i<3; i++) {
 						var similarArtistName = response.similarartists.artist[i].name;
 						console.log(similarArtistName);
 						var similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
-						newDiv.append("<input type='checkbox' data-name=" + similarArtistName + "</input>"); 
-						newDiv.append("<img src=" + similarArtistImg + ">");
+						//newDiv.append("<input type='checkbox' data-name=" + similarArtistName + "</input>"); 
 						newDiv.append("<h2>" + similarArtistName);
-						newDiv.append("<a href='" + response.similarartists.artist[i].url+ "' target='_'>" + similarArtistName + "</a>");
+						newDiv.append("<p><a href='" + response.similarartists.artist[i].url+ "' target='_'>" + similarArtistName + " Info</a></p>");
+						newDiv.append("<img src=" + similarArtistImg + ">");
 
 						//Spotify player
 
@@ -119,7 +138,7 @@
 								var player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
 
 								// Appends the new player into the HTML
-				                $("#playerDiv").append(player)
+				                newDiv.append(player);
 
 				                $(".similar-artist").append(newDiv);
 							});//End second AJAX call to get tracks associated with Spotify ID
