@@ -3,7 +3,6 @@ $(document).ready(function(){
 	var hold = [];
 	var holdShortenedName = [];
 	var similarArtistArray = [];
-
 	var config = {
 		apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
 		authDomain: "music-app-14ddc.firebaseapp.com",
@@ -12,7 +11,6 @@ $(document).ready(function(){
 		messagingSenderId: "95008115181"
 	};
 	firebase.initializeApp(config); // intializing firebase for our user data 
-
 	var database = firebase.database(); // database variable 
 
 	database.ref().set({
@@ -56,10 +54,15 @@ $(document).ready(function(){
 		$.get(infoQueryURL, function(response){
 			var artistName = response.artist.name;
 			var artistNameShortened = artistName.replace(/\s/g, '').toLowerCase();
+			var artistURL = response.artist.url;
 			//show in artist div searched for artist info from lastfm
-			$(".searched-artist").append("<h1>" + artistName);
-			$(".searched-artist").append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened); //Talk to design team about what needs to happen with "selected" artists
-			$(".searched-artist").append("<img src='" + response.artist.image[3]["#text"] + "''>");
+			var newDiv = $("<div>");
+			newDiv.append("<h3>" + artistName);
+			newDiv.append("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
+			$("#caption_artist").html(newDiv);
+			// $(".searched-artist").append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened); //Talk to design team about what needs to happen with "selected" artists
+			// $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
+			$(".searched-artist").html("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'>");
 			$.get(spotifyQueryURL, function(spotifyResponse){
 				// Prints the Artist ID from the Spotify Object to console.
 				var artistID = spotifyResponse.artists.items[0].id;
@@ -76,7 +79,7 @@ $(document).ready(function(){
 
 		//Similar Artist Query
 		$.get(similarQueryURL, function(response){
-			for (var i=0; i<3; i++){
+			for (var i=0; i<2; i++){
 				var newDiv = $("<div>");
 				var similarArtistName = response.similarartists.artist[i].name
 				var similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
@@ -84,11 +87,10 @@ $(document).ready(function(){
 				var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
 				holdShortenedName.push(similarArtistNameShortened);
 				similarArtistArray.push(similarArtistName);
-
+				$("#similar-artist"+i).html("<img src='" + similarArtistImg + "' alt='slider 0" + i+2 + "'>");
 				newDiv.append("<input type='checkbox' data-name='" + similarArtistNameShortened + "'</input>").attr("id", similarArtistNameShortened); 
-				newDiv.append("<img src=" + similarArtistImg + ">");
-				newDiv.append("<h2>" + similarArtistName);
-				newDiv.append("<a href='" + response.similarartists.artist[i].url+ "' target='_'>" + similarArtistName + "</a>");
+				newDiv.append("<h3>" + similarArtistName);
+				newDiv.append("<a href='" + response.similarartists.artist[i].url+ "' target='_'>" + similarArtistName + "'s LastFM Page</a>");
 				//Generating Spotify Player for first track of the similar artist
 				$.get(spotifyQueryURL, function(response){
 					// Prints the Artist ID from the Spotify Object to console.
@@ -99,16 +101,14 @@ $(document).ready(function(){
 						// Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
 						player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
 						// Appends the new player into the HTML
-						// hold.push(player); //Doesn't work for same reason as appending to newDiv asynchronously - rest of the page renders too quickly.
-						newDiv.append(player);
+						$("#playerDiv").append(player).addClass("hidden");
 					}); // End second Spotify AJAX call to get tracks
 				}); //End first Spotify AJAX call
-				$(".similar-artist").append(newDiv);
+				$("#caption_similar" + i).html(newDiv);
 			}; //End for loop
 		}); //End similar artist AJAX call
 		return false;
 	});//end of #find-artistevents click handler
-
 //-----CODE STILL NEEDED: Push selected artists (checkbox or something) to the selectedArtists array to search for events -------// 
 
 // --- END OF CODE FOR PUSHING TO ARRAY -------// 
@@ -223,5 +223,4 @@ $("#map-it").on("click", function() {
 initMap();
 
 }); // end of map click handler
-
 }); //end of document ready

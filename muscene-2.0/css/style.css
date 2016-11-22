@@ -29,6 +29,10 @@ border-radius: 8px;
     width: 420px;
 }
 
+.hidden{
+  display: none;
+}
+
 .testimonial_thumbnails_ind_carousel_caption {
     color: #fff;
 }
@@ -148,7 +152,10 @@ testimonial_thumbnails_ind_carousel_caption>p {
 /* background as defined by relevant div??? */
 .testimonial_thumbnails_ind_carousel_wrapper {
   background: #000;
+<<<<<<< HEAD
   /*background-image: url("../images/crowd4.jpg");*/
+=======
+>>>>>>> 47fc6ad4cd65bc9fb7f406f6d6b99502a05387e2
 }
 
 .testimonial_thumbnails_ind_carousel_caption>a,
@@ -166,7 +173,6 @@ testimonial_thumbnails_ind_carousel_caption>p {
     color: #fff;
     
 }
-
 /* ----- end custom style overrides - style.css ----- */
 
 /*-------------------------BEGIN MEDIA QUERIES--------------------------*/
@@ -183,4 +189,7 @@ testimonial_thumbnails_ind_carousel_caption>p {
 /* Rules for screen widths at 640px or lower */
 
 @media screen and (max-width: 640px) {
+
+=======
+/* ----- end custom style overrides - style.css ----- */
 
