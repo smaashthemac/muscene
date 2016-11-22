@@ -15,12 +15,16 @@ $(document).ready(function(){
 	firebase.initializeApp(config); // intializing firebase for our user data 
 	var database = firebase.database(); // database variable 
 
+	var usableLongitude; //Variables for the Google geocoding search
+	var usableLatitude;
+
 	$("#find-artistevents").on('click', function() {
 		$(".searched-artist").empty();
 		$(".similar-artist").empty();
 		$("#playerDiv").empty();
 		var userLocation = $("#location-input").val().trim(); // Variable for the searched location 
 		var userArtist = $("#artist-input").val().trim(); // Variable for the searchedArtist
+	
 		//Last FM query URL for getting searched artist info
 		var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
 		//Last FM query URL for getting similar artists 
@@ -84,4 +88,115 @@ $(document).ready(function(){
 		}); //End similar artist AJAX call
 		return false;
 	});//end of #find-artistevents click handler
+
+//-----CODE STILL NEEDED: Push selected artists (checkbox or something) to the selectedArtists array to search for events -------// 
+
+// --- END OF CODE FOR PUSHING TO ARRAY -------// 
+
+var eventLocationPair; 
+var selectedArtists = ['run the jewels', 'tycho', 'grouplove'];
+var eventLocations = [];
+
+//Searching for events based on the selected artists
+
+$("#find-events").on("click", function() {
+	for (var i=0; i < selectedArtists.length; i++) {
+		var eventURL = "https://api.bandsintown.com/artists/" + selectedArtists[i] + "/events/search.json?api_version=2.0&app_id=MUSCENE&location=" + userLocation +"&radius=150";
+
+		$.ajax({url: eventURL, method: "GET"}).done(function(response) {
+			console.log(response);
+			for (var i=0; i<response.length; i++) {
+			eventLocationPair = {
+				longitude: (response[i].venue.longitude), 
+				latitude: (response[i].venue.latitude)
+			}; // End of the object 
+
+			eventLocations.push(eventLocationPair);
+			console.log(eventLocations);
+			
+			$("#eventInfoDiv").append("<h1>"+ (i+1) + ". " + response[i].artists[0].name);
+			$("#eventInfoDiv").append("<h2>" + response[i].formatted_datetime);
+			$("#eventInfoDiv").append("<h3>" + response[i].formatted_location);
+			$("#eventInfoDiv").append(response[i].venue.name + "<br>"); 
+ 
+			if (response[i].ticket_status=== "available") {
+				$("#eventInfoDiv").append("<a target='_blank' href='" + response[i].ticket_url + "'>Buy tickets</a>");
+			} else {
+				$("#eventInfoDiv").append("Tickets are not available :(");
+			}
+		} // response length for loop
+	}) // AJAX Call
+} // selectedArtists for loop
+
+}); // End of find event click handler
+
+// --------NOT USING THIS FOLLOWING CODE BUT IT IS USEFUL TO HAVE IN CASE WE NEED TO CHANGE THE JAVASCRIPT CODE -----//
+// 	var mapURL = "https://maps.googleapis.com/maps/api/staticmap?size=400x500"; //staticmap?size=400x500
+
+// 	for (var i=0; i < eventLocations.length; i++) {
+
+// 	console.log(eventLocations[i].latitude);
+
+// 	var mapMarkerLabel = "&markers=color:blue%7Clabel:"+(i+1)+"%7C"+ eventLocations[i].latitude+","+eventLocations[i].longitude;
+// 		mapURL =  mapURL + mapMarkerLabel + "&key=AIzaSyCkG9aMY1Obxvnk_QD1ce7CT_5rEwGj-Us";
+// 	}// End of for loop
+
+// $("#map").append("<img src='" + mapURL +  "' alt='google map'>");
+
+//----- END OF CODE ---------------------// 
+
+//Potentially need to refigure now based on separate javascript file -----// 
+
+function initMap() {
+	//Geocoding URL for the lat/long for the center of the map
+	var geoURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userLocation +"&key=AIzaSyDnb-B2_SlUBZ8hZtUuWPNTxyVtQU5CunE";
+
+	$.ajax({url: geoURL, method: "GET"}).done(function(response) {
+		console.log(response);
+		usableLongitude = response.results[0].geometry.location.lng;
+		usableLatitude = response.results[0].geometry.location.lat;
+		console.log(usableLongitude);
+		console.log(usableLatitude);
+	})
+
+  	var map = new google.maps.Map(document.getElementById('map'), {
+  	center: {lat: usableLatitude, lng: usableLongitude},
+    zoom: 6,
+  });
+
+	for (var i = 0; i < eventLocations.length; i++) {
+    	var event = eventLocations[i];
+   		var marker = new google.maps.Marker({
+      		position: {lat: event.latitude, lng: event.longitude},
+      		map: map
+    	});
+	} 
+};
+
+//----- POTENTIALLY DO NOT NEED THIS CODE -----// 
+
+// function setMarkers(map) {
+
+// 	for (var i = 0; i < eventLocations.length; i++) {
+//     	var event = eventLocations[i];
+
+//     	console.log(event.latitude);
+//     	console.log(event.longitude);
+//    		var marker = new google.maps.Marker({
+//       		position: {lat: event.latitude, lng: event.longitude},
+//       		map: map
+//     	});
+// 	}
+// };
+
+// ----- END OF CODE -------------- // 
+
+//Click on the map button, show map
+
+$("#map-it").on("click", function() {
+
+initMap();
+
+}); // end of map click handler
+
 }); //end of document ready
