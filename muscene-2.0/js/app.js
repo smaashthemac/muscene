@@ -16,11 +16,24 @@ $(document).ready(function(){
 	var database = firebase.database(); // database variable 
 
 	database.ref().set({
-		savedArtist:
+		savedArtist: userArtist, 
+		savedLocation: userLocation,
 	})
 
 	database.ref().on("value", function(snapshot) {
+		if (snapshot.child("savedArtist").exists() && snapshot.child("savedLocation").exists()) {
+			$("#artist").empty();
+			$("#zipcode").empty();
+			$("#artist").append(savedArtist);
+			$("#zipcode").append(savedLocation);
+		}
 
+		else {
+			database.ref().set({
+				savedArtist: userArtist,
+				savedLocation: userLocation
+			})
+		}
 	})
 
 	var userLocation = $("#location-input").val().trim(); // Variable for the searched location 
@@ -30,7 +43,6 @@ $(document).ready(function(){
 		$(".searched-artist").empty();
 		$(".similar-artist").empty();
 		$("#playerDiv").empty();
-	
 	
 		//Last FM query URL for getting searched artist info
 		var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
