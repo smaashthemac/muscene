@@ -4,7 +4,6 @@ $(document).ready(function(){
 	var holdShortenedName = [];
 	var similarArtistArray = [];
 
-
 	var config = {
 		apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
 		authDomain: "music-app-14ddc.firebaseapp.com",
@@ -13,17 +12,25 @@ $(document).ready(function(){
 		messagingSenderId: "95008115181"
 	};
 	firebase.initializeApp(config); // intializing firebase for our user data 
+
 	var database = firebase.database(); // database variable 
 
-	var usableLongitude; //Variables for the Google geocoding search
-	var usableLatitude;
+	database.ref().set({
+		savedArtist:
+	})
+
+	database.ref().on("value", function(snapshot) {
+
+	})
+
+	var userLocation = $("#location-input").val().trim(); // Variable for the searched location 
+	var userArtist = $("#artist-input").val().trim(); // Variable for the searchedArtist
 
 	$("#find-artistevents").on('click', function() {
 		$(".searched-artist").empty();
 		$(".similar-artist").empty();
 		$("#playerDiv").empty();
-		var userLocation = $("#location-input").val().trim(); // Variable for the searched location 
-		var userArtist = $("#artist-input").val().trim(); // Variable for the searchedArtist
+	
 	
 		//Last FM query URL for getting searched artist info
 		var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
@@ -96,6 +103,9 @@ $(document).ready(function(){
 var eventLocationPair; 
 var selectedArtists = ['run the jewels', 'tycho', 'grouplove'];
 var eventLocations = [];
+
+var usableLongitude; //Variables for the Google geocoding search
+var usableLatitude;
 
 //Searching for events based on the selected artists
 
