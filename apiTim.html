@@ -20,7 +20,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var player;
-			var hold = [];
+			var holdPlayer = [];
 			var holdShortenedName = [];
 			var similarArtistArray = [];
 
@@ -74,9 +74,10 @@
 				$.get(similarQueryURL, function(response){
 					for (var i=0; i<3; i++){
 						var newDiv = $("<div>");
-						var similarArtistName = response.similarartists.artist[i].name
+						var similarArtist = response.similarartists.artist[i];
+						var similarArtistName = similarArtist.name;
 						var similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
-						var similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
+						var similarArtistImg = similarArtist.image[3]["#text"];
 						var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
 						holdShortenedName.push(similarArtistNameShortened);
 						similarArtistArray.push(similarArtistName);
@@ -86,22 +87,56 @@
 						newDiv.append("<h2>" + similarArtistName);
 						newDiv.append("<a href='" + response.similarartists.artist[i].url+ "' target='_'>" + similarArtistName + "</a>");
 						//Generating Spotify Player for first track of the similar artist
-						$.get(spotifyQueryURL, function(response){
+						$.get(spotifyQueryURL, function(spotifyResponse){
 							// Prints the Artist ID from the Spotify Object to console.
-							var artistID = response.artists.items[0].id;
+							var artistID = spotifyResponse.artists.items[0].id;
 							// Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
 							var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID +"/top-tracks?country=US";
 							$.get(queryURLTracks, function(trackResponse){
+								console.log(trackResponse);
 								// Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
 								player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
 								// Appends the new player into the HTML
+<<<<<<< HEAD
 								// hold.push(player); //Doesn't work for same reason as appending to newDiv asynchronously - rest of the page renders too quickly.
 								newDiv.append(player);
+=======
+								holdPlayer.push(player);
+								console.log("holdPlayer inside the ajax call");
+								console.log(holdPlayer);
+>>>>>>> 47fc6ad4cd65bc9fb7f406f6d6b99502a05387e2
 							}); // End second Spotify AJAX call to get tracks
+							console.log("holdPlayer inside the for loop:");
+							console.log(holdPlayer);
+							console.log("-------------------------------");
 						}); //End first Spotify AJAX call
 						$(".similar-artist").append(newDiv);
 					}; //End for loop
+<<<<<<< HEAD
 				}); //End similar artist AJAX call
+=======
+					console.log("I am after the for loop:");
+					console.log("------------------------");
+					console.log("holdShortenedName:");
+					console.log(holdShortenedName);
+					console.log("holdPlayer outside the loops");
+					console.log(holdPlayer);
+					console.log("holdPlayer array length:")
+					console.log(holdPlayer.length);
+					console.log(holdPlayer[0]);//WHY ARE THESE UNDEFEINED?
+					console.log(holdPlayer[1]);
+					console.log(holdPlayer[2]);
+					for (var j = 0; j<3; j++){
+						$("#" + holdShortenedName[j]).append(holdPlayer[0]);
+					}
+				}); //End similar artist AJAX call
+				$("#playerDiv").append(holdPlayer[0]);
+				// console.log(holdPlayer);
+				// console.log(holdShortenedName);
+				// for (var j = 0; j<3; j++){
+				// 	$("#" + holdShortenedName[j]).append(holdPlayer[j]);
+				// }
+>>>>>>> 47fc6ad4cd65bc9fb7f406f6d6b99502a05387e2
 				return false;
 			});//end of #find-artistevents click handler
 		}); //end of document ready
