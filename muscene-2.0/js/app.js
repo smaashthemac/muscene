@@ -126,6 +126,8 @@ $("#find-events").on("click", function() {
 			}
 		} // response length for loop
 	}) // AJAX Call
+
+	//initMap(); // This is here to potentially add the map immediately upon searching for the events
 } // selectedArtists for loop
 
 }); // End of find event click handler
