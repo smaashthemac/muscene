@@ -148,6 +148,7 @@ testimonial_thumbnails_ind_carousel_caption>p {
 /* background as defined by relevant div??? */
 .testimonial_thumbnails_ind_carousel_wrapper {
   background: #000;
+  /*background-image: url("../images/crowd4.jpg");*/
 }
 
 .testimonial_thumbnails_ind_carousel_caption>a,
@@ -167,3 +168,19 @@ testimonial_thumbnails_ind_carousel_caption>p {
 }
 
 /* ----- end custom style overrides - style.css ----- */
+
+/*-------------------------BEGIN MEDIA QUERIES--------------------------*/
+
+/* Rules for screen widths at 980px or lower */
+@media screen and (max-width: 980px) {
+  
+
+/* Rules for screen widths at 768px or lower */
+
+@media screen and (max-width: 768px) {
+
+
+/* Rules for screen widths at 640px or lower */
+
+@media screen and (max-width: 640px) {
+

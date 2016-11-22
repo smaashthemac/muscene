@@ -32,12 +32,12 @@ p {
   line-height: 1.5;
 }
 #logo {
-  width: 10%;
+  width: 20%;
   display: block;
   margin: 0 auto;
 }
 #logoText {
-  width: 70%;
+  width: 45%;
 }
 #artist, #zipcode, #searchButton {
   background-color: transparent;
@@ -62,14 +62,14 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #D0FF19;
+  color: #CFFD58;
 }
 .light {
   font-weight: 400;
 }
 .navbar-custom {
   margin-bottom: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(207, 253, 91, 0.3);
   text-transform: uppercase;
   font-family: 'Dosis', sans-serif;
   background-color: black;
@@ -111,7 +111,7 @@ a:focus {
   outline: none;
 }
 .navbar-custom .nav li.active a {
-  background-color: rgba(208, 255, 25, 0.8);
+  background-color: rgba(207, 253, 91, 0.8);
 }
 .navbar-custom .nav li.active a:hover {
   color: white;
@@ -129,18 +129,18 @@ a:focus {
   .navbar-custom.top-nav-collapse {
     padding: 0;
     background: black;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(207, 253, 91, 0.3);
   }
 }
 .intro {
- border: solid white 2px;
+ /*border: solid white 2px;*/
   display: table;
   width: 100%;
   height: auto;
   padding: 500px 0;
   text-align: center;
   color: white;
-background: url("../images/crowd1.jpeg") no-repeat bottom center scroll;
+background: url("../images/crowd2.jpg") no-repeat bottom center scroll;
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -254,7 +254,8 @@ background: url("../images/crowd1.jpeg") no-repeat bottom center scroll;
 }
 @media (min-width: 767px) {
   .content-section {
-    padding-top: 250px;
+    padding-top: 20px;
+    background-color: #CFFD58 !important;
   }
   .download-section {
     padding: 100px 0;
