@@ -16,7 +16,7 @@ $(document).ready(function(){
 	database.ref().set({
 		savedArtist: userArtist, 
 		savedLocation: userLocation,
-	})
+	});
 
 	// At the initial load of the site firebase will load the last searched artist into the search tabs as an idea prompt
 	database.ref().on("value", function(snapshot) {
@@ -26,22 +26,15 @@ $(document).ready(function(){
 			$("#artist").append(savedArtist);
 			$("#zipcode").append(savedLocation);
 		}
-
-		else {
-			database.ref().set({
-				savedArtist: userArtist,
-				savedLocation: userLocation
-			});
-		}
-	})
-
-	var userLocation = $("#location-input").val().trim(); // Variable for the searched location 
-	var userArtist = $("#artist-input").val().trim(); // Variable for the searchedArtist
+	});
 
 	$("#find-artistevents").on('click', function() {
 		$(".searched-artist").empty();
 		$(".similar-artist").empty();
 		$("#playerDiv").empty();
+
+		var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
+		var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
 	
 		//Last FM query URL for getting searched artist info
 		var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
@@ -49,6 +42,13 @@ $(document).ready(function(){
 		var similarQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json&limit=3";
 		//Spotify query URL for getting artist IDs
 		var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + userArtist + "&type=artist";
+
+		console.log(userLocation);
+		console.log(userArtist);
+		database.ref().set({
+			savedArtist: userArtist, 
+			savedLocation: userLocation
+		});
 
 		//Searched Artist search
 		$.get(infoQueryURL, function(response){
