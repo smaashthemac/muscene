@@ -45,6 +45,7 @@ $(document).ready(function(){
 
 		console.log(userLocation);
 		console.log(userArtist);
+		
 		database.ref().set({
 			savedArtist: userArtist, 
 			savedLocation: userLocation
