@@ -4,9 +4,6 @@ $(document).ready(function(){
 	var holdShortenedName = [];
 	var similarArtistArray = [];
 
-	var userArtist;
-	var userLocation;
-	
 	var config = {
 		apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
 		authDomain: "music-app-14ddc.firebaseapp.com",
@@ -16,11 +13,6 @@ $(document).ready(function(){
 	};
 	firebase.initializeApp(config); // intializing firebase for our user data 
 	var database = firebase.database(); // database variable 
-
-	database.ref().set({
-		savedArtist: userArtist, 
-		savedLocation: userLocation,
-	});
 
 	// At the initial load of the site firebase will load the last searched artist into the search tabs as an idea prompt
 	database.ref().on("value", function(snapshot) {
@@ -37,8 +29,8 @@ $(document).ready(function(){
 		$(".similar-artist").empty();
 		$("#playerDiv").empty();
 
-		userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
-		userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
+		var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
+		var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
 	
 		//Last FM query URL for getting searched artist info
 		var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
