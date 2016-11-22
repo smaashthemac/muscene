@@ -20,6 +20,7 @@ $(document).ready(function(){
 		savedLocation: userLocation,
 	})
 
+	// At the initial load of the site firebase will load the last searched artist into the search tabs as an idea prompt
 	database.ref().on("value", function(snapshot) {
 		if (snapshot.child("savedArtist").exists() && snapshot.child("savedLocation").exists()) {
 			$("#artist").empty();
@@ -32,7 +33,7 @@ $(document).ready(function(){
 			database.ref().set({
 				savedArtist: userArtist,
 				savedLocation: userLocation
-			})
+			});
 		}
 	})
 
