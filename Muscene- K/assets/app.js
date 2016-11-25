@@ -25,9 +25,7 @@ $(document).ready(function() {
     // });
 
     $("#searchButton").on('click', function() {
-        // $("#searched-artist").empty();
-        // $("#related-artist").empty();
-        // $("#playerDiv").empty();
+        $("#searched-artist").empty();
 
         var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
         var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
