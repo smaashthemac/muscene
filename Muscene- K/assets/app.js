@@ -24,9 +24,9 @@ $(document).ready(function() {
         }
     });
 
-    $("#find-artistevents").on('click', function() {
-        $(".searched-artist").empty();
-        $(".similar-artist").empty();
+    $("#searchButton").on('click', function() {
+        $("#searched-artist").empty();
+        $("#related-artist").empty();
         $("#playerDiv").empty();
 
         var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
@@ -59,7 +59,7 @@ $(document).ready(function() {
             $("#caption_artist").html(newDiv);
             // $(".searched-artist").append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened); //Talk to design team about what needs to happen with "selected" artists
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
-            $(".searched-artist").html("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'>");
+            $("#searched-artist").html("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'>");
             $.get(spotifyQueryURL, function(spotifyResponse){
                 // Prints the Artist ID from the Spotify Object to console.
                 var artistID = spotifyResponse.artists.items[0].id;
@@ -69,7 +69,7 @@ $(document).ready(function() {
                 $.get(queryURLTracks, function(trackResponse){
                     // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
                     player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+trackResponse.tracks[0].id+'" frameborder="0" allowtransparency="true"></iframe>';
-                    $("#playerDiv").append(player);
+                    $("#music-player").append(player);
                 });
             });
         });
@@ -84,7 +84,7 @@ $(document).ready(function() {
                 var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
                 holdShortenedName.push(similarArtistNameShortened);
                 similarArtistArray.push(similarArtistName);
-                $("#similar-artist"+i).html("<img src='" + similarArtistImg + "' alt='slider 0" + i+2 + "'>");
+                $("#related-artist"+i).html("<img src='" + similarArtistImg + "' alt='slider 0" + i+2 + "'>");
                 newDiv.append("<input type='checkbox' data-name='" + similarArtistNameShortened + "'</input>").attr("id", similarArtistNameShortened); 
                 newDiv.append("<h3>" + similarArtistName);
                 newDiv.append("<a href='" + response.similarartists.artist[i].url+ "' target='_'>" + similarArtistName + "'s LastFM Page</a>");
@@ -220,6 +220,9 @@ $("#map-it").on("click", function() {
 initMap();
 
 }); // end of map click handler
+
+
+// FRAMEWORK SITE FUNCTIONALITY
 
     (function ($) {
 
