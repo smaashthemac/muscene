@@ -49,6 +49,7 @@ $(document).ready(function() {
 
         //Searched Artist search
         $.get(infoQueryURL, function(response){
+            console.log(response);
             var artistName = response.artist.name;
             var artistNameShortened = artistName.replace(/\s/g, '').toLowerCase();
             var artistURL = response.artist.url;
@@ -56,10 +57,11 @@ $(document).ready(function() {
             var newDiv = $("<div>");
             newDiv.append("<h2>" + artistName + "<br><br>");
             newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
+            newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>");
             newDiv.append("<h3>" + "<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>" + "</h3>");
-            newDiv.append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened);
+            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input type='checkbox' data-name='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
             $("#searched-artist").append(newDiv);
-            // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
+            // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>" + "</p>");
             $.get(spotifyQueryURL, function(spotifyResponse){
                 // Prints the Artist ID from the Spotify Object to console.
                 var artistID = spotifyResponse.artists.items[0].id;
