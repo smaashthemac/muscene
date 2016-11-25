@@ -69,7 +69,7 @@ $(document).ready(function() {
                 $.get(queryURLTracks, function(trackResponse){
                     // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
                     player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+trackResponse.tracks[0].id+'" frameborder="0" allowtransparency="true"></iframe>';
-                    $("#music-player").append(player);
+                    newDiv.append(player);
                 });
             });
         });
