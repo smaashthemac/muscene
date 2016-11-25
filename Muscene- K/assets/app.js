@@ -25,9 +25,9 @@ $(document).ready(function() {
     });
 
     $("#searchButton").on('click', function() {
-        $("#searched-artist").empty();
-        $("#related-artist").empty();
-        $("#playerDiv").empty();
+        // $("#searched-artist").empty();
+        // $("#related-artist").empty();
+        // $("#playerDiv").empty();
 
         var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
         var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
@@ -59,7 +59,7 @@ $(document).ready(function() {
             $("#caption_artist").html(newDiv);
             // $(".searched-artist").append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened); //Talk to design team about what needs to happen with "selected" artists
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
-            $("#searched-artist").html("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'>");
+            $("#searched-artist").html("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'> class='img-circle'");
             $.get(spotifyQueryURL, function(spotifyResponse){
                 // Prints the Artist ID from the Spotify Object to console.
                 var artistID = spotifyResponse.artists.items[0].id;
