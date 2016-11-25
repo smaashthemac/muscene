@@ -54,13 +54,12 @@ $(document).ready(function() {
             var artistURL = response.artist.url;
             //show in artist div searched for artist info from lastfm
             var newDiv = $("<div>");
-            newDiv.append("<h2>" + artistName);
-            newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'> class='img-circle'");
-            newDiv.append("<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>");
+            newDiv.append("<h2>" + artistName + "<br><br>");
+            newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
+            newDiv.append("<h3>" + "<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>" + "</h3>");
             newDiv.append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened);
             $("#searched-artist").append(newDiv);
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
-
             $.get(spotifyQueryURL, function(spotifyResponse){
                 // Prints the Artist ID from the Spotify Object to console.
                 var artistID = spotifyResponse.artists.items[0].id;
