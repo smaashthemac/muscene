@@ -57,7 +57,7 @@ $(document).ready(function() {
             newDiv.append("<h3>" + artistName);
             newDiv.append("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
             $("#caption_artist").html(newDiv);
-            // $(".searched-artist").append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened); //Talk to design team about what needs to happen with "selected" artists
+            $("#searched-artist").append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened); //Talk to design team about what needs to happen with "selected" artists
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
             $("#searched-artist").html("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'> class='img-circle'");
             $.get(spotifyQueryURL, function(spotifyResponse){
@@ -147,7 +147,7 @@ $("#find-events").on("click", function() {
         } // response length for loop
     }) // AJAX Call
 
-    //initMap(); // This is here to potentially add the map immediately upon searching for the events
+    initMap(); // This is here to potentially add the map immediately upon searching for the events
 } // selectedArtists for loop
 
 }); // End of find event click handler
