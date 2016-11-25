@@ -4,25 +4,25 @@ $(document).ready(function() {
     var holdShortenedName = [];
     var similarArtistArray = [];
 
-    var config = {
-        apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
-        authDomain: "music-app-14ddc.firebaseapp.com",
-        databaseURL: "https://music-app-14ddc.firebaseio.com",
-        storageBucket: "music-app-14ddc.appspot.com",
-        messagingSenderId: "95008115181"
-    };
-    firebase.initializeApp(config); // intializing firebase for our user data 
-    var database = firebase.database(); // database variable 
+    // var config = {
+    //     apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
+    //     authDomain: "music-app-14ddc.firebaseapp.com",
+    //     databaseURL: "https://music-app-14ddc.firebaseio.com",
+    //     storageBucket: "music-app-14ddc.appspot.com",
+    //     messagingSenderId: "95008115181"
+    // };
+    // firebase.initializeApp(config); // intializing firebase for our user data 
+    // var database = firebase.database(); // database variable 
 
-    // At the initial load of the site firebase will load the last searched artist into the search tabs as an idea prompt
-    database.ref().on("value", function(snapshot) {
-        if (snapshot.child("savedArtist").exists() && snapshot.child("savedLocation").exists()) {
-            $("#artist").empty();
-            $("#zipcode").empty();
-            $("#artist").append(savedArtist);
-            $("#zipcode").append(savedLocation);
-        }
-    });
+    // // At the initial load of the site firebase will load the last searched artist into the search tabs as an idea prompt
+    // database.ref().on("value", function(snapshot) {
+    //     if (snapshot.child("savedArtist").exists() && snapshot.child("savedLocation").exists()) {
+    //         $("#artist").empty();
+    //         $("#zipcode").empty();
+    //         $("#artist").append(savedArtist);
+    //         $("#zipcode").append(savedLocation);
+    //     }
+    // });
 
     $("#searchButton").on('click', function() {
         // $("#searched-artist").empty();
@@ -42,10 +42,10 @@ $(document).ready(function() {
         console.log(userLocation);
         console.log(userArtist);
 
-        database.ref().set({
-            savedArtist: userArtist, 
-            savedLocation: userLocation
-        });
+        // database.ref().set({
+        //     savedArtist: userArtist, 
+        //     savedLocation: userLocation
+        // });
 
         //Searched Artist search
         $.get(infoQueryURL, function(response){
@@ -54,9 +54,9 @@ $(document).ready(function() {
             var artistURL = response.artist.url;
             //show in artist div searched for artist info from lastfm
             var newDiv = $("<div>");
-            newDiv.append("<h3>" + artistName);
-            newDiv.append("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
-            $("#caption_artist").html(newDiv);
+            newDiv.append("<h2>" + artistName);
+            newDiv.append("<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>");
+            $("#searched-artist").html(newDiv);
             $("#searched-artist").append("<input type='checkbox' data-name='" + artistNameShortened + "' </input>").attr("id", artistNameShortened); //Talk to design team about what needs to happen with "selected" artists
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>");
             $("#searched-artist").html("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01'> class='img-circle'");
@@ -134,15 +134,15 @@ $("#find-events").on("click", function() {
             eventLocations.push(eventLocationPair);
             console.log(eventLocations);
             
-            $("#eventInfoDiv").append("<h1>"+ (i+1) + ". " + response[i].artists[0].name);
-            $("#eventInfoDiv").append("<h2>" + response[i].formatted_datetime);
-            $("#eventInfoDiv").append("<h3>" + response[i].formatted_location);
-            $("#eventInfoDiv").append(response[i].venue.name + "<br>"); 
+            $("#events").append("<h1>"+ (i+1) + ". " + response[i].artists[0].name);
+            $("#events").append("<h2>" + response[i].formatted_datetime);
+            $("#events").append("<h3>" + response[i].formatted_location);
+            $("#events").append(response[i].venue.name + "<br>"); 
  
             if (response[i].ticket_status=== "available") {
-                $("#eventInfoDiv").append("<a target='_blank' href='" + response[i].ticket_url + "'>Buy tickets</a>");
+                $("#events").append("<a target='_blank' href='" + response[i].ticket_url + "'>Buy tickets</a>");
             } else {
-                $("#eventInfoDiv").append("Tickets are not available :(");
+                $("#events").append("Tickets are not available :(");
             }
         } // response length for loop
     }) // AJAX Call
