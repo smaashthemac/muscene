@@ -1,0 +1,327 @@
+/* slick carousel styles */
+html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+        width: 90%;
+        margin: 100px auto;
+    }
+
+    .slick-slide {
+      margin: 0px 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+
+p {
+  font-family: 'Dosis', sans-serif !important;
+  font-size: 15px !important;
+}
+
+h1, h2, h5 {
+  font-family: 'Unica One', sans-serif !important;
+  text-transform: uppercase !important;
+}
+
+h1 {
+  font-size: 50px !important;
+}
+
+h2 {
+  font-size: 35px !important;
+}
+
+h5 {
+  font-size: 20px !important;
+}
+
+#parallax {
+	background-image: url("../assets/crowd1.jpeg");
+	min-height: 710px; 
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  padding-bottom: 210px;
+}
+#parallax2 {
+	background-image: url("../assets/crowd2.jpg");
+	min-height: 710px; 
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#text {
+	height: auto;
+	background-color: #CFFD5B;
+	font-size: 12px;
+  font-family: 'Unica One', cursive;
+}
+#foot {
+  height: 30px;
+  background-color: #CFFD5B;
+  font-size: 15px;
+  font-family: 'Unica One', cursive;
+  padding-top: 5px;
+}
+/* Nav Bar */
+#nav {
+	margin: 0;
+	font-family: 'Unica One', cursive;
+	background-color: rgba(0,0,0,0);
+    border: 0;
+    box-shadow: none;
+    z-index: 999;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition: background .5s ease-in-out, opacity .5s ease;
+    -moz-transition: background .5s ease-in-out, opacity .5s ease;
+    transition: background .5s ease-in-out, opacity .5s ease;
+}
+#nav .container-fluid {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -webkit-transition: padding-top .5s ease, padding-bottom .5s ease;
+    -moz-transition: padding-top .5s ease, padding-bottom .5s ease;
+    transition: padding-top .5s ease, padding-top .5s ease, padding-bottom .5s ease;
+}
+#nav.affix {
+    top: 0;
+    min-width: 100%;
+    background-color: #f8f8f8;
+    opacity: 0.9;
+    -webkit-transition: background .5s ease-in-out, opacity .5s ease;
+    -moz-transition: background .5s ease-in-out, opacity .5s ease;
+    transition: background .5s ease-in-out, opacity .5s ease;
+}
+/* ------------------------- */
+#brand {
+	color: white;
+	font-size: 30px;
+}
+#navLink1, #navLink2, #navLink3 {
+	color: white;
+	font-size: 20px;
+}
+#logo {
+	width: 7%;
+	margin: 0 auto;
+	display: block;
+	margin-top: 15%;
+} 
+#logoText {
+	width: 45%;
+	margin: 0 auto;
+	display: block;
+}
+#tagline {
+	color: white;
+	text-align: center;
+	margin: 0;
+	font-family: 'Dosis', sans-serif;
+	margin-bottom: 50px;
+}
+#artist, #zipcode, #searchButton {
+  background-color: transparent;
+}
+#searchIcon {
+	color: white; 
+}
+#form {
+	text-align: center;
+}
+.form-control:focus {
+  border-color: #CFFD5B;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.6);
+}
+#map {
+  margin: 0 auto;
+  height: 500px;
+  width: 1000px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-top: 150px;
+}
+
+/* Carousel
+
+body {
+    margin: 0;
+    
+}
+
+.container {
+    width: 100%;
+   
+}
+
+.container::before {
+    content:none;
+}
+
+.navbar-brand {
+    padding-left: 50px;
+}
+
+#music-player {
+/* decreasing height of spotify player goes below spotify's minimum - the content inside doesn't adjust to smaller sizes */
+/* width: 390px;
+margin: 40px 525px;
+border-radius: 8px;
+}
+
+.testimonial_thumbnails_ind_carousel_wrapper {
+  padding: 25px;
+  overflow: hidden;
+}
+
+.testimonial_thumbnails_ind_carousel_indicators {
+  left: 0%;
+  right: 0%;
+  z-index: 3;
+  bottom: 0%;
+  width: 100%;
+  margin-left: 0%;
+  position: relative;
+  margin-bottom: 0px;
+  padding: 5px 0px 0px 0px;
+}
+
+.testimonial_thumbnails_ind_carousel_indicators li {
+  width: 20%;
+  margin: 0px;
+  height: auto;
+  border: none;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.testimonial_thumbnails_ind_carousel_indicators li img {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.testimonial_thumbnails_ind_carousel_indicators .active {
+  width: 20%;
+  height: auto;
+  border: none;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.testimonial_thumbnails_ind_carousel_indicators .active img {
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  -o-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+.testimonial_thumbnails_ind_carousel_caption {
+  text-align: center;
+  padding: 50px 100px 20px 100px;
+  color: #fff;
+  font-family: 'Unica One', cursive;
+}
+
+.testimonial_thumbnails_ind_carousel_caption>p {
+  font-size: 18px;
+  font-weight: 300;
+  font-family: 'Dosis', sans-serif;
+}
+
+.testimonial_thumbnails_ind_carousel_caption>p>i {
+  margin-right: 10px;
+}
+
+.testimonial_thumbnails_ind_carousel_caption>h3 {
+  font-family: 'Unica One', cursive;
+  font-size: 85px;
+  margin-bottom: 0px;
+  color: #d0ff19;
+}
+
+.testimonial_thumbnails_ind_carousel_caption>a,
+.testimonial_thumbnails_ind_carousel_caption>a:visited {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Dosis', sans-serif;
+  -webkit-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
+}
+
+.images{
+	border-radius: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .testimonial_thumbnails_ind_carousel_caption {
+    padding: 0px 0px 30px 0px;
+  }
+}
+*/
+
+/* background as defined by relevant div??? */
+.testimonial_thumbnails_ind_carousel_wrapper {
+  background: #000;
+}
+
+.testimonial_thumbnails_ind_carousel_caption>a,
+.testimonial_thumbnails_ind_carousel_caption>a:visited {
+  color: #fff;
+}
+
+.testimonial_thumbnails_ind_carousel_caption>a:hover,
+.testimonial_thumbnails_ind_carousel_caption>a:active {
+  color: #CFFD5B;
+}
+
+#footer {
+    background-color: #000;
+    color: #fff;
+    
+}
+
+/* checkbox styles */
+/* SQUARED TWO */
+
+/* ----- end custom style overrides - style.css ----- */
