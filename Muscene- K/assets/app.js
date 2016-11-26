@@ -73,6 +73,7 @@ var similarArtistImg;
             newDiv.append("<h2>" + artistName + "<br><br>");
             newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
             newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>");
+            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
             newDiv.append("<h3>" + "<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>" + "</h3>");
             newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input id = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");
             $("#searched-artist").append(newDiv);
