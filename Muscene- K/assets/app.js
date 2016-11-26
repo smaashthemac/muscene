@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    // hides the rest of the divs until they are populated
+    // $("#artist-section").hide();
+    // $("#map-section").hide();
+
     var js_file = document.createElement('script');
     js_file.type = 'text/javascript';
     js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
@@ -38,7 +42,8 @@ var similarArtistNameShortened;
 var similarArtistImg;
 
     $("#searchButton").on('click', function() {
-        $("#searched-artist").empty();
+        // $("#artist-section").show("slow");
+
         // $("#related-artist1").empty();
         // $("#related-artist2").empty();
         // $("#related-artist3").empty();
@@ -68,15 +73,13 @@ var similarArtistImg;
             var artistNameShortened = artistName.replace(/\s/g, '').toLowerCase();
             var artistURL = response.artist.url;
             //show in artist div searched for artist info from lastfm
-            var newDiv = $("<div>");
-            newDiv.attr("id", artistNameShortened);
-            newDiv.append("<h2>" + artistName + "<br><br>");
-            newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
-            newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>");
-            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
-            newDiv.append("<h3>" + "<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>" + "</h3>");
-            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");
-            $("#searched-artist").append(newDiv);
+            // var newDiv = $("<div>");
+            // newDiv.attr("id", artistNameShortened);
+            $("#title").append("<h2>" + artistName + "<br><br>");
+            $("#image").append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
+            $("#bio").append("<br><br><p>" + response.artist.bio.summary + "</p>");
+            $("#mapThem").append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
+            //$("#searched-artist").append(newDiv);
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>" + "</p>");
             $.get(spotifyQueryURL, function(spotifyResponse){
                 // Prints the Artist ID from the Spotify Object to console.
@@ -87,7 +90,7 @@ var similarArtistImg;
                 $.get(queryURLTracks, function(trackResponse){
                     // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
                     player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+trackResponse.tracks[0].id+'" frameborder="0" allowtransparency="true"></iframe>';
-                    newDiv.append(player);
+                    $("#player").append(player);
                 });
             });
         });
@@ -99,11 +102,20 @@ var similarArtistImg;
         //Similar Artist Query
         $.get(similarQueryURL, function(response){
 
+            console.log(response);
+
             for (var i=0; i<4; i++){
                 
                 similarArtistName = response.similarartists.artist[i].name
                 similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
                 similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
+
+                // get bio information for related artists
+                var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + similarArtistName + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
+                $.get(infoQueryURL, function(response){
+                console.log(response);
+                console.log(response.artist.bio.summary)
+                });
 
                 holdShortenedName.push(similarArtistNameShortened);
                 similarArtistArray.push(similarArtistName);
@@ -113,6 +125,7 @@ var similarArtistImg;
                 newDiv.attr("id", similarArtistNameShortened);
                 newDiv.append("<h2>" + similarArtistName + "<br><br>");
                 newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'>");
+                //newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>");
                 newDiv.append("<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input>");
                 newDiv.append("<h3> <a href='" + response.similarartists.artist[i].url+ "' target='_'> LEARN MORE ABOUT THEM HERE </a></h3>");
                 $("#related-artist" + i).append(newDiv);
@@ -165,6 +178,7 @@ var usableLatitude;
 
 $("#find-events").on("click", function() {
 
+    $("#map-section").show();
     var findArtists = $(".artist-event input:checkbox:checked").map(function(){
       return $(this).val();
         }).get();

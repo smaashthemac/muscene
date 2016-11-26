@@ -26,25 +26,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top" id="nav" data-spy="affix">
-	  <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" id="brand" href="#">muscene</a>
-	    </div>
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav navbar-right">
-	        <li><a id="navLink1" href="#">Artists</a></li>
-	        <li><a id="navLink2" href="#">Shows</a></li>
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
+
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div class="container-fluid">
@@ -66,21 +48,24 @@
                 </form>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" div id="artist-section">
 			<div class="col-md-12" id="text">
 				<div class="row">
-                    <h2>Discover artists similar to your favorite!</h2>
                     <div class="col-lg-14">
                     <!--+++++++++ carousel +++++++++-->
                     <section class="center slider">
                         <div id="searched-artist">
-                            <!-- <h1>Radiohead</h1>
+                            <div id="title">
+                            </div>
+                            <div id="image">
+                            </div>
+                            <div id="bio">
+                            </div>
+                            <div id="mapThem">
+                            </div>
                             <br>
-                            <img src="https://images.rapgenius.com/73715694109bea2f690beb19a23e45f4.350x350x1.jpg" alt="radiohead" class="img-circle">
-                            <br><br>
-                            <p>Here's a small bio about the band. The band is from This place, Here and formed in this year. They've had this many albums and this many hits and their style is like this, this and sometimes this. Another fun fact about them is this.</p>
-                              <br>
-                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> -->
+                            <div id="player">
+                            </div>
                         </div>
 
                         <div id="related-artist1">
@@ -119,8 +104,8 @@
 
                     </section>
                     <!--+++++++++ End Carousel +++++++++-->
-                    <h2>Click to see where your new favorite artists are playing near you!</h2><br>
-                    <button type="button" class="btn" id="find-events">Find</button>
+                    <a href="#"><h2>Click to see where your new favorite artists are playing near you!</h2></a><br>
+                    <!--<button type="button" class="btn" id="find-events">Find</button>-->
                 </div><!--/col-lg-14 -->
                 </div><!--/row -->
             <!-- </main> -->
@@ -128,7 +113,7 @@
             <!--/section -->
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" id="map-section">
 			<div class="col-md-12" id="parallax2">
                 <div id="map">
                 </div>

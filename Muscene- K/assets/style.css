@@ -26,15 +26,27 @@ html, body {
         color: black;
     }
 
-#searched-artist:hover,
-#searched-artist:active {
-  background-color: pink;
-}
+    .slick-track {
+        margin-bottom: -50px !important;
+    }
 
 .form-control {
   color: #CFFD5B !important;
 }
 
+/* link styles */
+a:focus, a:hover {
+    color: #000;
+}
+a:active, a:hover {
+    outline: 0;
+}
+a {
+    color: #777;
+    text-decoration: none;
+}
+
+/* text styles */
 p {
   font-family: 'Dosis', sans-serif !important;
   font-size: 15px !important;
@@ -57,18 +69,20 @@ h5 {
   font-size: 20px !important;
 }
 
+/* parallax styles */
+
 #parallax {
 	background-image: url("../assets/crowd1.jpeg");
-	min-height: 710px; 
+	min-height: 700px; 
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-  padding-bottom: 210px;
+  padding-bottom: 190px;
 }
 #parallax2 {
 	background-image: url("../assets/crowd2.jpg");
-	min-height: 710px; 
+	min-height: 700px; 
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -117,6 +131,7 @@ h5 {
     -moz-transition: background .5s ease-in-out, opacity .5s ease;
     transition: background .5s ease-in-out, opacity .5s ease;
 }
+
 /* ------------------------- */
 #brand {
 	color: white;
@@ -341,7 +356,5 @@ border-radius: 8px;
     
 }
 
-/* checkbox styles */
-/* SQUARED TWO */
 
 /* ----- end custom style overrides - style.css ----- */
