@@ -110,6 +110,7 @@ var similarArtistImg;
                 similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
                 similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
 
+
                 // get bio info for similar artists
                 var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + similarArtistName + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
                 $.get(infoQueryURL, function(response){
@@ -125,7 +126,7 @@ var similarArtistImg;
                 newDiv.attr("id", similarArtistNameShortened);
                 newDiv.append("<h2>" + similarArtistName + "<br><br>");
                 newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'>");
-                newDiv.append("<br><br><p>" + response[i].artist.bio.summary + "</p>");
+                //newDiv.append("<br><br><p>" + response[i].artist.bio.summary + "</p>");
                 newDiv.append("<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input>");
                 newDiv.append("<h3> <a href='" + response.similarartists.artist[i].url+ "' target='_'> LEARN MORE ABOUT THEM HERE </a></h3>");
                 $("#related-artist" + i).append(newDiv);
