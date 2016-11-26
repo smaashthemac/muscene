@@ -76,7 +76,7 @@ $(document).ready(function() {
 
         //Similar Artist Query
         $.get(similarQueryURL, function(response){
-            for (var i=0; i<2; i++){
+            for (var i=0; i<3; i++){
                 var newDiv = $("<div>");
                 var similarArtistName = response.similarartists.artist[i].name
                 var similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
@@ -84,7 +84,7 @@ $(document).ready(function() {
                 var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
                 holdShortenedName.push(similarArtistNameShortened);
                 similarArtistArray.push(similarArtistName);
-                $("#related-artist"+i).html("<img src='" + similarArtistImg + "' alt='slider 0" + i+2 + "'>");
+                $(".related-artist"+i).html("<img src='" + similarArtistImg + "' alt='slider 0" + i+2 + "'>");
                 newDiv.append("<input type='checkbox' data-name='" + similarArtistNameShortened + "'</input>").attr("id", similarArtistNameShortened); 
                 newDiv.append("<h3>" + similarArtistName);
                 newDiv.append("<a href='" + response.similarartists.artist[i].url+ "' target='_'>" + similarArtistName + "'s LastFM Page</a>");
