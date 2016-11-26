@@ -46,8 +46,6 @@
         -ms-transform: translate3d(0, 0, 0);
          -o-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
-            margin-bottom: -50px;
-            margin-top: -25px;
 }
 
 .slick-track
