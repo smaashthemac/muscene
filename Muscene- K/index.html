@@ -58,9 +58,9 @@
                         <input type="text" class="form-control" id="artist" placeholder="Artist">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="zipcode" placeholder="Zipcode">
+                        <input type="text" class="form-control" id="zipcode" placeholder="City, State">
                     </div>
-                        <button type="submit" class="btn" id="searchButton">
+                        <button type="button" class="btn" id="searchButton">
                           	<span class="glyphicon glyphicon-search" id="searchIcon"></span>
                         </button>
                 </form>
@@ -69,56 +69,59 @@
 		<div class="row">
 			<div class="col-md-12" id="text">
 				<div class="row">
+                    <h2>Discover artists similar to your favorite!</h2>
                     <div class="col-lg-14">
                     <!--+++++++++ carousel +++++++++-->
                     <section class="center slider">
                         <div id="searched-artist">
-                            <h1>Radiohead</h1>
+                            <!-- <h1>Radiohead</h1>
                             <br>
                             <img src="https://images.rapgenius.com/73715694109bea2f690beb19a23e45f4.350x350x1.jpg" alt="radiohead" class="img-circle">
                             <br><br>
                             <p>Here's a small bio about the band. The band is from This place, Here and formed in this year. They've had this many albums and this many hits and their style is like this, this and sometimes this. Another fun fact about them is this.</p>
                             <h5><a href="#">Learn more about them here.</a></h5>
                               <br>
-                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> -->
                         </div>
 
-                        <div id="related-artist">
-                            <h2>Radiohead</h2>
+                        <div id="related-artist1">
+                           <!--  <h2>Radiohead</h2>
                             <br><br>
                             <img src="https://images.rapgenius.com/73715694109bea2f690beb19a23e45f4.350x350x1.jpg" alt="radiohead" class="img-circle">
                             <br><br>
                             <p>Here's a small bio about the band. The band is from This place, Here and formed in this year. They've had this many albums and this many hits and their style is like this, this and sometimes this. Another fun fact about them is this.</p>
                             <h5><a href="#">Learn more about them here.</a></h5>
                               <br>
-                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> -->
                         </div>
 
-                        <div id="related-artist">
-                            <h2>Radiohead</h2>
+                        <div  id="related-artist2">
+                            <!-- <h2>Radiohead</h2>
                             <br><br>
                             <img src="https://images.rapgenius.com/73715694109bea2f690beb19a23e45f4.350x350x1.jpg" alt="radiohead" class="img-circle">
                             <br><br>
                             <p>Here's a small bio about the band. The band is from This place, Here and formed in this year. They've had this many albums and this many hits and their style is like this, this and sometimes this. Another fun fact about them is this.</p>
                             <h5><a href="#">Learn more about them here.</a></h5>
                               <br>
-                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> -->
                         </div>
 
-                        <div id="related-artist">
-                            <h2>Radiohead</h2>
+                        <div id="related-artist3">
+                            <!-- <h2>Radiohead</h2>
                             <br><br>
                             <img src="https://images.rapgenius.com/73715694109bea2f690beb19a23e45f4.350x350x1.jpg" alt="radiohead" class="img-circle">
                             <br><br>
                             <p>Here's a small bio about the band. The band is from This place, Here and formed in this year. They've had this many albums and this many hits and their style is like this, this and sometimes this. Another fun fact about them is this.</p>
                             <h5><a href="#">Learn more about them here.</a></h5>
                               <br>
-                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> -->
                         </div>
     
 
                     </section>
                     <!--+++++++++ End Carousel +++++++++-->
+                    <h2>Click to see where your new favorite artists are playing near you!</h2><br>
+                    <button type="button" class="btn" id="find-events">Find</button>
                 </div><!--/col-lg-14 -->
                 </div><!--/row -->
             <!-- </main> -->
@@ -129,9 +132,12 @@
 		<div class="row">
 			<div class="col-md-12" id="parallax2">
                 <div id="map">
+                </div>
+                <div id="events">
                 </div>	
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-md-12 text-center" id="foot">
 				Copyright 2016 Muscene
@@ -139,7 +145,13 @@
 		</div>
 	</div>
 
+
+
 	<script type="text/javascript" src="assets/app.js"></script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap">
+    </script>
 
     <script src="assets/responsive_bootstrap_carousel.js"></script>
 
