@@ -32,20 +32,9 @@ var usableLatitude;
 
 //$(document).ready(function() {
 
-
- // var js_file = document.createElement('script');
- //    js_file.type = 'text/javascript';
- //    js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
- //    document.getElementsByTagName('head')[0].appendChild(js_file);
-
     // hides the rest of the divs until they are populated
     // $("#artist-section").hide();
     // $("#map-section").hide();
-
-    var js_file = document.createElement('script');
-    js_file.type = 'text/javascript';
-    js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
-    document.getElementsByTagName('head')[0].appendChild(js_file);
 
 
     var player;
