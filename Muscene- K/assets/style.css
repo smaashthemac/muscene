@@ -26,6 +26,11 @@ html, body {
         color: black;
     }
 
+#searched-artist:hover,
+#searched-artist:active {
+  background-color: pink;
+}
+
 .form-control {
   color: #CFFD5B !important;
 }
