@@ -1,4 +1,42 @@
-$(document).ready(function() {
+//Google maps function
+function initMap() {
+    //Geocoding URL for the lat/long for the center of the map
+    var geoURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userLocation +"&key=AIzaSyDnb-B2_SlUBZ8hZtUuWPNTxyVtQU5CunE";
+
+    $.ajax({url: geoURL, method: "GET"}).done(function(response) {
+        console.log(response);
+        usableLongitude = response.results[0].geometry.location.lng;
+        usableLatitude = response.results[0].geometry.location.lat;
+        console.log(usableLongitude);
+        console.log(usableLatitude);
+    })
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: usableLatitude, lng: usableLongitude},
+    zoom: 6,
+  });
+
+    for (var i = 0; i < eventLocations.length; i++) {
+        var event = eventLocations[i];
+        var marker = new google.maps.Marker({
+            position: {lat: event.latitude, lng: event.longitude},
+            map: map
+        });
+    } 
+};
+
+var userLocation;
+var usableLongitude; //Variables for the Google geocoding search
+var usableLatitude;
+
+
+//$(document).ready(function() {
+
+
+ // var js_file = document.createElement('script');
+ //    js_file.type = 'text/javascript';
+ //    js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
+ //    document.getElementsByTagName('head')[0].appendChild(js_file);
 
     // hides the rest of the divs until they are populated
     // $("#artist-section").hide();
@@ -9,13 +47,13 @@ $(document).ready(function() {
     js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
     document.getElementsByTagName('head')[0].appendChild(js_file);
 
+
     var player;
     var hold = [];
     var holdShortenedName = [];
     var similarArtistArray = [];
 
-    var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
-    var userArtist = $("#artist").val().trim();
+    var userArtist;
 
     // var config = {
     //     apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
@@ -48,8 +86,8 @@ var similarArtistImg;
         // $("#related-artist2").empty();
         // $("#related-artist3").empty();
 
-        var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
-        var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
+        userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
+        userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
     
         //Last FM query URL for getting searched artist info
         var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
@@ -73,6 +111,16 @@ var similarArtistImg;
             var artistNameShortened = artistName.replace(/\s/g, '').toLowerCase();
             var artistURL = response.artist.url;
             //show in artist div searched for artist info from lastfm
+
+            var newDiv = $("<div>");
+            newDiv.attr("id", artistNameShortened);
+            newDiv.append("<h2>" + artistName + "<br><br>");
+            newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
+            newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>");
+            newDiv.append("<h3>" + "<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>" + "</h3>");
+            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class='artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");
+            $("#searched-artist").append(newDiv);
+
             // var newDiv = $("<div>");
             // newDiv.attr("id", artistNameShortened);
             $("#title").append("<h2>" + artistName + "<br><br>");
@@ -80,6 +128,7 @@ var similarArtistImg;
             $("#bio").append("<br><br><p>" + response.artist.bio.summary + "</p>");
             $("#mapThem").append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
             //$("#searched-artist").append(newDiv);
+
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>" + "</p>");
             $.get(spotifyQueryURL, function(spotifyResponse){
                 // Prints the Artist ID from the Spotify Object to console.
@@ -98,9 +147,11 @@ var similarArtistImg;
 var similarArtistName;
 var similarArtistNameShortened;
 var similarArtistImg;
+var newDiv;
 
         //Similar Artist Query
         $.get(similarQueryURL, function(response){
+            console.log(response);
 
             console.log(response);
 
@@ -122,39 +173,25 @@ var similarArtistImg;
                 similarArtistArray.push(similarArtistName);
                 console.log(similarArtistArray);
 
-                var newDiv = $("<div>");
+                newDiv = $("<div>");
                 newDiv.attr("id", similarArtistNameShortened);
                 newDiv.append("<h2>" + similarArtistName + "<br><br>");
                 newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'>");
+
                 //newDiv.append("<br><br><p>" + response[i].artist.bio.summary + "</p>");
+
+
+                newDiv.append("<br><br><p>" + response[i].artist.bio.summary + "</p>");
+
                 newDiv.append("<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input>");
+
                 newDiv.append("<h3> <a href='" + response.similarartists.artist[i].url+ "' target='_'> LEARN MORE ABOUT THEM HERE </a></h3>");
+                newDiv.append("<p>LIKE THEM? SELECT TO FIND THEIR EVENTS!<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input></p>");
                 $("#related-artist" + i).append(newDiv);
                 //Generating Spotify Player for first track of the similar artist
+                var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
 
-
-                // $.get(spotifyQueryURL, function(response){
-                //     // Prints the Artist ID from the Spotify Object to console.
-                //     var artistID = response.artists.items[0].id;
-                //     // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
-                //     var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID +"/top-tracks?country=US";
-                //     $.get(queryURLTracks, function(trackResponse){
-                //         // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
-                //         player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
-                //         // Appends the new player into the HTML
-                //         newDiv.append(player);
-                //     }); // End second Spotify AJAX call to get tracks
-                // }); //End first Spotify AJAX call
-
-
-            }; //End for loop
-        }); //End similar artist AJAX call
-        return false;
-    });//end of #find-artistevents click handler
-
-$(similarArtistNameShortened).on("click", function(){
-var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
-   $.get(spotifyQueryURL, function(response){
+                $.get(spotifyQueryURL, function(response){
                     // Prints the Artist ID from the Spotify Object to console.
                     var artistID = response.artists.items[0].id;
                     // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
@@ -166,14 +203,34 @@ var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName
                         newDiv.append(player);
                     }); // End second Spotify AJAX call to get tracks
                 }); //End first Spotify AJAX call
-});
+
+
+            }; //End for loop
+        }); //End similar artist AJAX call
+        return false;
+    });//end of #find-artistevents click handler
+
+//------ POTENTIAL SOLUTION #1 FOR LAGGING SPOTIFY PLAYER (DOES NOT CURRENTLY WORK) ------//
+
+// //$("#"+similarArtistNameShortened).on("click", function(){
+// var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
+//    $.get(spotifyQueryURL, function(response){
+//                     // Prints the Artist ID from the Spotify Object to console.
+//                     var artistID = response.artists.items[0].id;
+//                     // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
+//                     var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID +"/top-tracks?country=US";
+//                     $.get(queryURLTracks, function(trackResponse){
+//                         // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
+//                         player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
+//                         // Appends the new player into the HTML
+//                         newDiv.append(player);
+//                     }); // End second Spotify AJAX call to get tracks
+//                 }); //End first Spotify AJAX call
+// });
+//---- END OF POTENTIAL SOLUTION #1 --------// 
 
 var eventLocationPair; 
-var selectedArtists = ['run the jewels', 'tycho', 'grouplove'];
 var eventLocations = [];
-
-var usableLongitude; //Variables for the Google geocoding search
-var usableLatitude;
 
 //Searching for events based on the selected artists
 
@@ -211,11 +268,12 @@ $("#find-events").on("click", function() {
             }
         } // response length for loop
     }) // AJAX Call
-
-    initMap(); // This is here to potentially add the map immediately upon searching for the events
 } // selectedArtists for loop
 
+initMap();
+
 }); // End of find event click handler
+
 
 // --------NOT USING THIS FOLLOWING CODE BUT IT IS USEFUL TO HAVE IN CASE WE NEED TO CHANGE THE JAVASCRIPT CODE -----//
 //  var mapURL = "https://maps.googleapis.com/maps/api/staticmap?size=400x500"; //staticmap?size=400x500
@@ -232,33 +290,6 @@ $("#find-events").on("click", function() {
 
 //----- END OF CODE ---------------------// 
 
-//Potentially need to refigure now based on separate javascript file -----// 
-
-function initMap() {
-    //Geocoding URL for the lat/long for the center of the map
-    var geoURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userLocation +"&key=AIzaSyDnb-B2_SlUBZ8hZtUuWPNTxyVtQU5CunE";
-
-    $.ajax({url: geoURL, method: "GET"}).done(function(response) {
-        console.log(response);
-        usableLongitude = response.results[0].geometry.location.lng;
-        usableLatitude = response.results[0].geometry.location.lat;
-        console.log(usableLongitude);
-        console.log(usableLatitude);
-    })
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: usableLatitude, lng: usableLongitude},
-    zoom: 6,
-  });
-
-    for (var i = 0; i < eventLocations.length; i++) {
-        var event = eventLocations[i];
-        var marker = new google.maps.Marker({
-            position: {lat: event.latitude, lng: event.longitude},
-            map: map
-        });
-    } 
-};
 
 //----- POTENTIALLY DO NOT NEED THIS CODE -----// 
 
@@ -384,4 +415,4 @@ $(window).scroll(function() {
     }   
 });
 
-}); // End of document ready
+//}); // End of document ready
