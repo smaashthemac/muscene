@@ -1,4 +1,10 @@
 $(document).ready(function() {
+
+    var js_file = document.createElement('script');
+    js_file.type = 'text/javascript';
+    js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
+    document.getElementsByTagName('head')[0].appendChild(js_file);
+
     var player;
     var hold = [];
     var holdShortenedName = [];
@@ -27,11 +33,15 @@ $(document).ready(function() {
     //     }
     // });
 
+var similarArtistName;
+var similarArtistNameShortened;
+var similarArtistImg;
+
     $("#searchButton").on('click', function() {
         $("#searched-artist").empty();
-        $("#related-artist1").empty();
-        $("#related-artist2").empty();
-        $("#related-artist3").empty();
+        // $("#related-artist1").empty();
+        // $("#related-artist2").empty();
+        // $("#related-artist3").empty();
 
         var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
         var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
@@ -59,10 +69,13 @@ $(document).ready(function() {
             var artistURL = response.artist.url;
             //show in artist div searched for artist info from lastfm
             var newDiv = $("<div>");
+            newDiv.attr("id", artistNameShortened);
             newDiv.append("<h2>" + artistName + "<br><br>");
             newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
             newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>");
             newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
+            newDiv.append("<h3>" + "<a target='_blank' href='" + artistURL + "'> LEARN MORE ABOUT THEM HERE</a>" + "</h3>");
+            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");
             $("#searched-artist").append(newDiv);
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>" + "</p>");
             $.get(spotifyQueryURL, function(spotifyResponse){
@@ -79,29 +92,55 @@ $(document).ready(function() {
             });
         });
 
+var similarArtistName;
+var similarArtistNameShortened;
+var similarArtistImg;
+
         //Similar Artist Query
         $.get(similarQueryURL, function(response){
 
-            for (var i=0; i<3; i++){
+            for (var i=0; i<4; i++){
                 
-                var similarArtistName = response.artist[i].name
-                var similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
-                var similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
-                var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
+                similarArtistName = response.similarartists.artist[i].name
+                similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
+                similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
 
                 holdShortenedName.push(similarArtistNameShortened);
                 similarArtistArray.push(similarArtistName);
                 console.log(similarArtistArray);
 
                 var newDiv = $("<div>");
+                newDiv.attr("id", similarArtistNameShortened);
                 newDiv.append("<h2>" + similarArtistName + "<br><br>");
-                newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "' alt='slider 0" + i+2 + "' >");
-                newDiv.append("<br><br><p>" + response[i].artist.bio.summary + "</p>");
-                newDiv.append("<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input>").attr("id", similarArtistNameShortened); 
+                newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'>");
+                newDiv.append("<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input>");
                 newDiv.append("<h3> <a href='" + response.similarartists.artist[i].url+ "' target='_'> LEARN MORE ABOUT THEM HERE </a></h3>");
                 $("#related-artist" + i).append(newDiv);
                 //Generating Spotify Player for first track of the similar artist
-                $.get(spotifyQueryURL, function(response){
+
+
+                // $.get(spotifyQueryURL, function(response){
+                //     // Prints the Artist ID from the Spotify Object to console.
+                //     var artistID = response.artists.items[0].id;
+                //     // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
+                //     var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID +"/top-tracks?country=US";
+                //     $.get(queryURLTracks, function(trackResponse){
+                //         // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
+                //         player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
+                //         // Appends the new player into the HTML
+                //         newDiv.append(player);
+                //     }); // End second Spotify AJAX call to get tracks
+                // }); //End first Spotify AJAX call
+
+
+            }; //End for loop
+        }); //End similar artist AJAX call
+        return false;
+    });//end of #find-artistevents click handler
+
+$(similarArtistNameShortened).on("click", function(){
+var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
+   $.get(spotifyQueryURL, function(response){
                     // Prints the Artist ID from the Spotify Object to console.
                     var artistID = response.artists.items[0].id;
                     // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
@@ -113,14 +152,7 @@ $(document).ready(function() {
                         newDiv.append(player);
                     }); // End second Spotify AJAX call to get tracks
                 }); //End first Spotify AJAX call
-            }; //End for loop
-        }); //End similar artist AJAX call
-        return false;
-    });//end of #find-artistevents click handler
-
-//-----CODE STILL NEEDED: Push selected artists (checkbox or something) to the selectedArtists array to search for events -------// 
-
-// --- END OF CODE FOR PUSHING TO ARRAY -------// 
+});
 
 var eventLocationPair; 
 var selectedArtists = ['run the jewels', 'tycho', 'grouplove'];
@@ -136,10 +168,10 @@ $("#find-events").on("click", function() {
     var findArtists = $(".artist-event input:checkbox:checked").map(function(){
       return $(this).val();
         }).get();
-    console.log(findArtists);
+        console.log(findArtists);
 
-    for (var i=0; i < selectedArtists.length; i++) {
-        var eventURL = "https://api.bandsintown.com/artists/" + selectedArtists[i] + "/events/search.json?api_version=2.0&app_id=MUSCENE&location=" + userLocation +"&radius=150";
+    for (var i=0; i < findArtists.length; i++) {
+        var eventURL = "https://api.bandsintown.com/artists/" + findArtists[i] + "/events/search.json?api_version=2.0&app_id=MUSCENE&location=" + userLocation +"&radius=150";
 
         $.ajax({url: eventURL, method: "GET"}).done(function(response) {
             console.log(response);
@@ -230,14 +262,6 @@ function initMap() {
 // };
 
 // ----- END OF CODE -------------- // 
-
-//Click on the map button, show map
-
-$("#map-it").on("click", function() {
-
-initMap();
-
-}); // end of map click handler
 
 
 // FRAMEWORK SITE FUNCTIONALITY
