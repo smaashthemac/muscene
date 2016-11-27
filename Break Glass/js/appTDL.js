@@ -54,9 +54,7 @@ $(document).ready(function() {
         $("#our-team").removeClass("hidden");
         // $("#artist-section").show("slow");
 
-        // $("#related-artist1").empty();
-        // $("#related-artist2").empty();
-        // $("#related-artist3").empty();
+        $(".related-artist").empty();
 
         var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
         var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
