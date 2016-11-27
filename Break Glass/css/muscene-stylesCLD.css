@@ -103,6 +103,7 @@ p {
   padding: 20px;
   box-sizing: border-box; 
   color: #CFFD5B;
+   width: 100%;
   }
 .form-control:focus {
   border-color: #CFFD5B;
