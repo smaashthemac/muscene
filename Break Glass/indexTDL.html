@@ -20,7 +20,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom Styling and CSS Overrides -->
-    <link href="css/muscene-styles.css" rel="stylesheet">
+    <link href="css/muscene-stylesTDL.css" rel="stylesheet">
 
   </head>
 
@@ -28,46 +28,21 @@
 
 	<div id="content"><!-- wrapper for all content -->
 
-	<header>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-10 col-xs-9">
-				<h1 id="logo">Muscene</h1>
-			</div><!-- end 2 -->
-			<div class="col-sm-2 col-xs-3 visible-sm text-right visible-xs">
-				<a href="#" title="nav" class="mini-nav"><i class="fa fa-reorder"></i></a>
-			</div>
-
-			<div class="col-lg-6 col-lg-offset-3 col-md-7 col-md-offset-2 col-sm-12 col-xs-12">
-				<nav id="navigation">
-						<ul class="nav">
-							<li class="active"><a href="#main" title="Home">Home</a></li>
-							<li><a href="#our-team" title="Our Team">Artists</a></li>
-							<li><a href="#contact" title="Contact">Map</a></li>
-							<li><a href="#blog" title="Blog">Contact</a></li>
-						</ul>
-				</nav>
-			</div><!-- end 12 -->
-		</div><!-- end row -->
-	</div><!-- end container -->
-	</header><!--end header -->
-
 	<!-- mainImage -->
  	<div id="main">
  		<div class="container">
  			<div class="row">
-				<div class="col-lg-7 col-lg-offset-5 col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-12">
+				<div class="col-lg-8 col-lg-offset-2">
 				    <br>
 					<br>
 					<br>
-					<br>
-					<br>
-					<br>
 					<div class="cont-wrapper">
-						<p class="intro">Find Your New Favorite Artists</p>
+						<img src="images/logo-green.png" alt="muscene logo" id="logo">
+						<img src="images/muscene-text-green.png" alt="muscene text logo" id="logoText">
+						<h2>Find your new favorite artists</h2>
 						<form class="form-inline" id="form">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="artist" placeholder="Artist">
+                        <input type="text" class="form-control" id="artist" placeholder="Artist" style="margin-left: 200px;">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="zipcode" placeholder="Zip Code">
@@ -82,42 +57,8 @@
  		</div><!-- end container -->
 	</div><!-- end row -->
 
-	<!-- Find great music . . . -->
-	<div id="intro-strip">
-		<div class="container">
-		        
-				<br>
-				<br>
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2"><h1>Find great music . . . </h1></div>
-			</div><!-- end row -->
-			    <br>
-				<br>
-				
-		</div><!-- end container -->
-	</div><!-- end intro strip -->
-
-	<!-- ========== PARALLAX BACKGROUND STRIP - wherever you are! ================ -->
-
-	<div id="parallax" data-speed="8" class="hidden-sm hidden-xs">
-		<div class="container">
-          <br>
-          <br>
-	 		 <div class="row">
-	 		 	<div class="col-lg-8 col-lg-offset-2">
-			 		<h2>wherever you are!</h2>
-	 		 	</div>
-	 		 </div>
-	 		    <br>
-	 		    <br>
-	 		    <br>
-	 		    <br>
-	 		    <br>
-		 </div>
-	</div>
-
 <!-- ========================= Artists ================================ -->
-<div id="our-team" class="hidden">
+<div id="our-team">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -126,107 +67,83 @@
 		</div><!-- end row -->
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-4">
-				<div class="staff-mem" id="searched-artist">
+				<div class="staff-me" id="searched-artist">
+				</div>
+				<div class="row players player-searched hidden" id="searched-player">
 				</div>
 			</div><!-- end 3.1 -->
 
 			<div class="col-lg-4 col-md-4 col-sm-4">
 				<div class="staff-mem related-artist" id="related-artist0">
 				</div>
+				<div class="row players players0 hidden" id="related-player0">
+				</div>
 			</div><!-- end 3.2 -->
 
 			<div class="col-lg-4 col-md-4 col-sm-4">
 				<div class="staff-mem related-artist" id="related-artist1">
 				</div>
+				<div class="row players players1 hidden" id="related-player1">
+				</div>
 			</div><!-- end 3.3 -->
 
 		</div><!-- end row -->
-
-		<div class="row"><!-- start row with players -->
+		<!-- start row with players -->
+		<div class="row">
 
 			<div class="col-lg-4 col-md-4 col-sm4">
-				<div class="staff-mem players" id="searched-player">
+				<div class="staff-mem players player-searched displayed" id="searched-player">
 				</div>
 			</div>
 
 			<div class="col-lg-4 col-md-4 col-sm4">
-				<div class="staff-mem players" id="related-player0">
+				<div class="staff-mem players players0 displayed" id="related-player0">
 				</div>
 			</div>
 
 			<div class="col-lg-4 col-md-4 col-sm4">
-				<div class="staff-mem players" id="related-player1">
+				<div class="staff-mem players players0 displayed" id="related-player1">
 				</div>
 			</div>
 
-		</div><!-- end row players -->
+		</div>
+		<!-- end row players -->
+
+		<button id="eventsButton" type="submit" class="btn">Find Events</button>
 
 	</div><!-- end container -->
 </div>
+<!-- ========== PARALLAX BACKGROUND STRIP - Map section ================ -->
 
-<!-- ========================= Sign-up monthly newsletter ================================ -->
-
-<div id="signup">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<h3>Sign up for muscene's monthly newsletter</h3>
-
-				<div class="row">
-						<form>
-							<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 col-sm-9   col-xs-12">
-								<input type="email" class="form-control"  placeholder="Enter email">
-							</div>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"><button id="email-list" type="submit" class="btn btn-db">Sign up now!</button></div>
-						</form>
-				</div>
-			</div>
-		</div><!-- end row -->
-
-	</div><!-- end container -->
-</div><!-- end signup -->
-
-<!-- ========================== Map =========================== -->
-
-<div id="contact">
+	<div id="parallax" data-speed="8" class="hidden-sm hidden-xs">
 		<div class="container">
-			<div class="row">
-			        <div class="col-md-12">
-                       <h2>Your muscene map!</h2>
-                        <div id="map"></div>
-		            </div>
-			</div><!-- end row -->
-		</div><!-- end container -->
-</div><!-- end map -->
-
-<!-- ========================== Contact us =========================== -->
-
-<div id="blog">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-					<h2 style="color: #A364FF;">Contact Us</h2>
-					<p  style="font-size: 20px;">Please contact us with any comments, questions, or suggestions. </p>
-					    <form>
-								<p><input class="form-control" placeholder="Enter name"></p>
-								<p><input class="form-control" placeholder="Enter email"></p>
-								<p><textarea class="form-control" rows="3" placeholder="Enter text here"></textarea></p>
-								<p><button type="submit" class="btn btn-db">SEND</button></p>
-						</form>
-				</div>
-			</div><!-- end row -->
-		</div><!-- end container -->
-</div><!-- end contact -->
+	 		 <div class="row">
+	 		 	<div class="col-lg-8 col-lg-offset-2">
+	 		 		<div class="col-md-6">
+	 		 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8395549037823!2d-97.73822508446527!3d30.270152381800873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b5a40259a1d5%3A0x406f3c3c36a295bb!2sMohawk+Austin!5e0!3m2!1sen!2sus!4v1480269822163" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+	 		 		</div>
+	 		 		<div class="col-md-6">
+	 		 		</div>
+			 		
+			 	</div>
+ 		 	</div>
+ 		    <br>
+ 		    <br>
+ 		    <br>
+ 		    <br>
+ 		    <br>
+		</div>
+	</div>
 
 <!-- =========== Footer ============ -->
 <footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-				<h3 id="copyright">&copy; Copyright Muscene 2016</h3>
+				<h3 id="copyright">&copy; copyright muscene 2016</h3>
 			</div>
 			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"><br>
-				<p class="sn-links"><a href="https://twitter.com/muscene_ut" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
+				<p class="sn-links"><a href="https://www.twitter.com/muscene_ut" title="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
 				<a href="#" title="linked-in"><i class="fa fa-linkedin-square"></i></a></p>
 			</div>
 		</div>
@@ -239,12 +156,11 @@
 
      <script src="bootstrap/assets/js/jquery.js"></script>
 	 <script src="js/waypoints.min.js"></script>
-	 <script src="js/muscene-script.js"></script>
+	 <script src="js/appTDL1.js"></script>
 	 <script src="js/jquery.nav.js"></script>
 	 <script src="js/jquery.scrollTo.js"></script>
 	 <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 	 <script src="bootstrap/assets/js/holder.js"></script>
-	 <script src="js/appTDL.js"></script>
 
   </body>
 </html>

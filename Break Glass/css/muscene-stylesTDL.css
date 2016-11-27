@@ -1,0 +1,414 @@
+
+/* TOC
+==================================================
+
+  #GENERAL
+  #HEADER
+  #MAIN
+  #PARALLAX SECTION
+  #ARTISTS SECTION
+  #SIGNUP SECTION
+  #FOOTER
+  #MEDIA QUERIES
+
+==================================================
+*/
+/* ==================== General ================== */
+body {
+  font-family: 'Dosis', sans-serif;
+  height: 100%;
+  color: white; 
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Unica One', cursive; 
+  letter-spacing: 0.25px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  margin-bottom: 26px; 
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 52px; 
+}
+
+h2 {
+  font-size: 38px;
+  line-height: 44px; 
+  color: #fff;
+}
+
+h2#artists-found {
+    padding-top: 10px;
+    color: #CFFD5B;
+    margin-bottom: 50px;
+    font-size: 50px;
+}
+
+h3 {
+  color: white;
+  font-size: 28px;
+  line-height: 28px; 
+  color: #000;
+}
+
+p {
+  font-size: 15px;
+  line-height: 26px;
+  margin-bottom: 32px; 
+}
+
+.hidden{
+  visbility: hidden;
+}
+
+.form-control {
+  border-radius: 0;
+  border: 1px solid #CFFD5B;
+  -webkit-transition: background 0.5s ease;
+  -moz-transition: background 0.5s ease;
+  -o-transition: background 0.5s ease;
+  transition: background 0.5s ease;
+  padding: 20px;
+  box-sizing: border-box; 
+  color: #CFFD5B;
+  }
+.form-control:focus {
+  border-color: #CFFD5B;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.6);
+  }
+
+.btn-db {
+  outline: none;
+  background-color: #CFFD5B;
+  color: #000;
+  border-radius: 0;
+  padding: 10px;
+  -webkit-transition: background 0.5s ease;
+  -moz-transition: background 0.5s ease;
+  -o-transition: background 0.5s ease;
+  transition: background 0.5s ease;
+  width: 100%; }
+  .btn-db:hover {
+    color: #fff;
+}
+
+.sn-links a {
+  color: white;
+  -webkit-transition: color 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  transition: color 0.5s ease; 
+}
+
+  .sn-links a:hover {
+    color: #CFFD5B; 
+}
+
+  .sn-links a .fa {
+    font-size: 32px;
+    margin: 5px; 
+}
+
+/* ====================== Main ========================= */
+#main {
+  background: url(../images/crowd1.jpeg) 0 0 no-repeat fixed;
+  min-height: 840px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  /* Internet Explorer 7/8 */
+  background-attachment: fixed; 
+}
+  #main .cont-wrapper {
+    position: relative;
+    width: 100%;
+    top: 125px; 
+  }
+  #main p.intro {
+    color: #fff;
+    font-size: 46px;
+    line-height: 57px;
+    letter-spacing: -1px;
+    font-weight: 400;
+    padding: 0px 0 30px 0px;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Dosis', sans-serif;  
+  }
+  #main p.btn-wrp {
+    text-align: center;
+  }
+  #artist, #zipcode, #searchButton {
+  background-color: transparent;
+  font-size: 14px;
+  text-transform: uppercase;
+  }
+  #searchIcon{
+    color: #fff;
+  }
+  #logo{
+    width: 20%;
+    margin: 0 auto;
+    display: block;
+  }
+  #logoText{
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 15px;
+  }
+/*#intro-strip {
+  background-color: #000;
+  padding: 20px 0;
+  text-align: center;
+  -moz-box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3); }
+  #intro-strip h1 {
+    color: #fff; }*/
+
+#home {
+  padding-top: 80px;
+  padding-bottom: 0;
+  height: 100%;
+  margin-bottom: 0; }
+  #home .ipad {
+    position: relative;
+    right: -10px;
+    overflow: hidden; }
+  #home .ipad img {
+    position: relative;
+    opacity: 0;
+    right: -500px;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease; }
+  #home .ipad.anim img {
+    opacity: 1;
+    -webkit-transform: translateX(-480px);
+    -moz-transform: translateX(-480px);
+    -o-transform: translateX(-480px);
+    transform: translateX(-480px); }
+  #home .text {
+    position: relative;
+    opacity: 0;
+    left: -50px;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    transition: all 1.5s ease; }
+  #home .text.anim {
+    opacity: 1;
+    -webkit-transform: translateX(50px);
+    -moz-transform: translateX(50px);
+    -o-transform: translateX(50px);
+    transform: translateX(50px); }
+
+
+#artist {
+  margin-left: 200px;
+}
+/* ======= Parllax/Sign up section =========== */
+#parallax {
+  position: relative;
+  width: 100%;
+  background: url(../images/crowd2.jpg) no-repeat 0 0 fixed;
+  background-size: cover;
+  min-height: 350px; }
+  #parallax h2 {
+    color: #fff;
+    margin-top: 130px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 0px 1px 1px black; }
+
+/* ================= Artists section ==================== */
+#our-team {
+  padding: 40px 0 60px 0;
+  text-align: center;
+  background-color: black;
+  /* end staff-me */ }
+  #our-team .staff-mem {
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease; }
+    #our-team .staff-mem p {
+      margin-bottom: 10px; }
+    #our-team .staff-mem.anim {
+      top: -10px; }
+    #our-team .staff-mem img {
+      margin: 0 auto;
+      border: 1px solid #cccccc; }
+  #our-team p {
+    margin-bottom: 60px; }
+
+iframe#music-player {
+    margin-top: 20px;
+}
+
+ #eventsButton {
+    background-color: transparent;
+    border: white 1px solid;
+    font-size: 20px;
+    margin-top: 30px;
+  }
+   #eventsButton:hover {
+    color: #CFFD5B;
+  }
+
+/* ================= Map section ======================== */
+#contact {
+  background: #f8f8f8;
+  padding: 40px 0 60px 0;
+  text-align: center;
+  border-bottom: 1px solid #ccc; }
+  #contact p {
+    margin: 10px 0; }
+  #contact .btn {
+    width: 100%; }
+
+/* ================= Contact us ======================== */
+#blog {
+  padding: 40px 0 40px 0;
+  text-align: center;
+    background-color: #000;
+    color: #fff;
+    
+  /* end post */ }
+  #blog .post {
+    cursor: pointer;
+    /* end post pic */ }
+    #blog .post p {
+      margin: 20px 0; }
+    #blog .post .post-pic {
+      text-align: center;
+      margin: 10px auto;
+      box-sizing: border-box;
+      overflow: hidden;
+      border: 3px solid #000;
+      max-width: 370px;
+      max-height: 240px;
+      /* end img */ }
+      #blog .post .post-pic img {
+        -webkit-transition: all 2.5s ease;
+        -moz-transition: all 2.5s ease;
+        -o-transition: all 2.5s ease;
+        transition: all 2.5s ease; }
+        #blog .post .post-pic img.anim {
+          -webkit-transform: scale(1.2);
+          -moz-transform: scale(1.2);
+          -o-transform: scale(1.2);
+          transform: scale(1.2); }
+
+/* ============================= FOOTER =============================== */
+footer {
+  background-color: #CFFD5B;
+  padding: 10px 0; }
+  footer p {
+    margin: 10px 0 0 0;
+    color: #000; }
+  footer .sn-links {
+    margin: 0;
+    text-align: right; }
+    footer .sn-links a {
+      color: #000; }
+
+/* ==================================== MEDIA QUERIES ==================================== */
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
+@media (max-width: 480px) {
+  header {
+    min-height: 50px; }
+    header h1#logo {
+      position: relative;
+      top: -6px; }
+    header a.mini-nav {
+      position: relative;
+      top: -8px;
+      /*  line-height: 0; */ }
+
+  #main {
+    min-height: 500px !important; }
+    #main .cont-wrapper {
+      top: 100px; }
+    #main p.intro {
+      text-align: center;
+      font-size: 32px;
+      line-height: 38px; }
+
+  .btn-db {
+    margin-top: 10px; }
+
+  footer p, footer .sn-links {
+    text-align: center; } }
+@media (max-width: 991px) {
+  header a.mini-nav {
+    font-size: 28px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0 8px;
+    border-radius: 5px; }
+  header nav ul {
+    padding: 0;
+    margin-top: 40px;
+    display: none; }
+  header nav ul.nav li {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); }
+    header nav ul.nav li:hover {
+      background: rgba(0, 0, 0, 0.2); }
+    header nav ul.nav li a {
+      display: block;
+      width: 100%; }
+  .form-group {
+    margin-right: 25%;
+  }
+  .hidden {
+    visibility: visible;
+  }
+  .displayed {
+    display: none;
+  }
+  h1 {
+    font-size: 34px;
+    line-height: 38px; }
+
+  h2 {
+      color: #fff;
+    font-size: 28px;
+    line-height: 32px; }
+
+  h3 {
+    font-size: 22px;
+    line-height: 26px; }
+
+  #main {
+    background-attachment: scroll;
+    background-position-x: -100px;
+    min-height: 600px; }
+    #main .cont-wrapper {
+      top: 110px; }
+    #main p.intro {
+      text-align: center; }
+
+  #home {
+    padding-top: 30px; }
+    #home .ipad {
+      top: 140px; } }
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #home .text {
+    top: 0; } }
