@@ -45,7 +45,20 @@ h2#artists-found {
     padding-top: 10px;
     color: #CFFD5B;
     margin-bottom: 50px;
+    margin-top: -20px;
     font-size: 50px;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer,
+.modal-content {
+  background-color: #000;
+  text-align: center;
+}
+
+h3.modal-title {
+  color: #fff;
 }
 
 h3 {
@@ -60,6 +73,20 @@ p {
   line-height: 26px;
   margin-bottom: 32px; 
 }
+
+ #modalButton {
+    text-align: center;
+    background-color: #CFFD5B;
+    color: #000;
+    /*border: white 1px solid;*/
+    font-size: 16px;
+    margin-top: 30px;
+  }
+   #modalButton:hover {
+    background-color: transparent;
+    color: #CFFD5B;
+    border: #CFFD5B 1px solid;
+  }
 
 .form-control {
   border-radius: 0;
@@ -258,6 +285,7 @@ iframe#music-player {
    #eventsButton:hover {
     color: #CFFD5B;
   }
+
 
 /* ================= Map section ======================== */
 #contact {
