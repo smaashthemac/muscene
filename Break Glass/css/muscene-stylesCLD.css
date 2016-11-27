@@ -2,14 +2,14 @@
 /* TOC
 ==================================================
 
-	#GENERAL
-	#HEADER
-	#MAIN
-	#PARALLAX SECTION
-	#ARTISTS SECTION
-	#SIGNUP SECTION
-	#FOOTER
-	#MEDIA QUERIES
+  #GENERAL
+  #HEADER
+  #MAIN
+  #PARALLAX SECTION
+  #ARTISTS SECTION
+  #SIGNUP SECTION
+  #FOOTER
+  #MEDIA QUERIES
 
 ==================================================
 */
@@ -17,16 +17,17 @@
 body {
   font-family: 'Dosis', sans-serif;
   height: 100%;
-  color: #3d505f; 
+  color: white; 
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Unica One', cursive; 
   letter-spacing: 0.25px;
   margin-bottom: 16px;
-  color: #3d505f;
   font-weight: 400;
   margin-bottom: 26px; 
+  text-transform: uppercase;
+  text-align: center;
 }
 
 h1 {
@@ -37,16 +38,20 @@ h1 {
 h2 {
   font-size: 38px;
   line-height: 44px; 
+  color: #fff;
 }
 
 h2#artists-found {
     padding-top: 10px;
+    color: #CFFD5B;
+    margin-bottom: 50px;
 }
 
 h3 {
-  color: #A364FF;
+  color: white;
   font-size: 28px;
   line-height: 28px; 
+  color: #000;
 }
 
 p {
@@ -57,21 +62,23 @@ p {
 
 .form-control {
   border-radius: 0;
-  border: 1px solid #ccc;
+  border: 1px solid #CFFD5B;
   -webkit-transition: background 0.5s ease;
   -moz-transition: background 0.5s ease;
   -o-transition: background 0.5s ease;
   transition: background 0.5s ease;
   padding: 20px;
-  box-sizing: border-box; }
-  .form-control:focus {
-    background-color: #eee;
-    box-shadow: none; 
-}
+  box-sizing: border-box; 
+  color: #CFFD5B;
+  }
+.form-control:focus {
+  border-color: #CFFD5B;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.6);
+  }
 
 .btn-db {
   outline: none;
-  background-color: #A364FF;
+  background-color: #CFFD5B;
   color: #000;
   border-radius: 0;
   padding: 10px;
@@ -82,11 +89,10 @@ p {
   width: 100%; }
   .btn-db:hover {
     color: #fff;
-    background-color: #658dab; 
 }
 
 .sn-links a {
-  color: #3d505f;
+  color: white;
   -webkit-transition: color 0.5s ease;
   -moz-transition: color 0.5s ease;
   -o-transition: color 0.5s ease;
@@ -94,7 +100,7 @@ p {
 }
 
   .sn-links a:hover {
-    color: #A364FF; 
+    color: #CFFD5B; 
 }
 
   .sn-links a .fa {
@@ -102,84 +108,53 @@ p {
     margin: 5px; 
 }
 
-/* ====================== Header ========================= */
-header {
-  background-color: rgba(21, 26, 40, 0.8);
-  min-height: 70px;
-  padding: 15px 0 0 0;
-  position: fixed;
-  z-index: 200;
-  width: 100%; 
-}
-
-  h1#logo {
-    margin: 0;
-    padding: 1px 0;
-    color: #A364FF;
-}
-
-nav ul.nav {
-  text-align: right;
-  padding-top: 10px;
-  font-size: 16px; 
-}
-
-  nav ul.nav li {
-    display: inline;
-    margin: 0 20px; 
-}
-
-    nav ul.nav li:last-child {
-      margin-right: 0; 
-}
-
-    nav ul.nav li.active a {
-      color: #A364FF;
-      text-decoration: none; 
-}
-
-nav a {
-  color: white;
-  font-weight: 700;
-  -webkit-transition: background 0.5s ease;
-  -moz-transition: background 0.5s ease;
-  -o-transition: background 0.5s ease;
-  transition: background 0.5s ease; 
-}
-
-  nav a:hover, nav a.active {
-    color: #A364FF;
-    text-decoration: none; 
-}
-
 /* ====================== Main ========================= */
 #main {
-  background: url(../images/mainImage.jpg) 0 0 no-repeat fixed;
-  min-height: 747px;
+  background: url(../images/crowd1.jpeg) 0 0 no-repeat fixed;
+  min-height: 840px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   background-position: center;
   /* Internet Explorer 7/8 */
-  background-attachment: fixed; }
+  background-attachment: fixed; 
+}
   #main .cont-wrapper {
     position: relative;
     width: 100%;
-    top: 230px; }
+    top: 125px; 
+  }
   #main p.intro {
     color: #fff;
     font-size: 46px;
     line-height: 57px;
     letter-spacing: -1px;
     font-weight: 400;
-    padding: 30px 0 30px 0px;
-    margin-bottom: 40px;
-    position: relative;
-    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5); }
+    padding: 0px 0 30px 0px;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Dosis', sans-serif;  
+  }
   #main p.btn-wrp {
-    text-align: center; }
-
-#intro-strip {
+    text-align: center;
+  }
+  #artist, #zipcode, #searchButton {
+  background-color: transparent;
+  }
+  #searchIcon{
+    color: #fff;
+  }
+  #logo{
+    width: 20%;
+    margin: 0 auto;
+    display: block;
+  }
+  #logoText{
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 15px;
+  }
+/*#intro-strip {
   background-color: #000;
   padding: 20px 0;
   text-align: center;
@@ -187,7 +162,7 @@ nav a {
   -webkit-box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3); }
   #intro-strip h1 {
-    color: #fff; }
+    color: #fff; }*/
 
 #home {
   padding-top: 80px;
@@ -229,13 +204,13 @@ nav a {
 
 
 
-/* ======= Parllax section =========== */
+/* ======= Parllax/Sign up section =========== */
 #parallax {
   position: relative;
   width: 100%;
-  background: url(../images/parallaxBg.jpg) no-repeat 50% 0 fixed;
+  background: url(../images/crowd2.jpg) no-repeat 0 0 fixed;
   background-size: cover;
-  height: 350px; }
+  min-height: 350px; }
   #parallax h2 {
     color: #fff;
     margin-top: 130px;
@@ -247,6 +222,7 @@ nav a {
 #our-team {
   padding: 40px 0 60px 0;
   text-align: center;
+  background-color: black;
   /* end staff-me */ }
   #our-team .staff-mem {
     cursor: pointer;
@@ -270,14 +246,15 @@ iframe#music-player {
     margin-top: 20px;
 }
 
-/* ================= Sign up newsletter ======================== */
-#signup {
-  background: #000;
-  color: #fff;
-  padding: 30px 0 60px 0;
-  text-align: center; }
-  #signup h3 {
-    color: #fff; }
+ #eventsButton {
+    background-color: transparent;
+    border: white 1px solid;
+    font-size: 20px;
+    margin-top: 30px;
+  }
+   #eventsButton:hover {
+    color: #CFFD5B;
+  }
 
 /* ================= Map section ======================== */
 #contact {
@@ -289,16 +266,6 @@ iframe#music-player {
     margin: 10px 0; }
   #contact .btn {
     width: 100%; }
-  #map {
-    width: 400px;
-    height: 500px;
-    float: left; 
-    margin-left: 100px;}
-  #events {
-    width: 600px;
-    height: 500px;
-    float: left; }
-  
 
 /* ================= Contact us ======================== */
 #blog {
@@ -335,16 +302,16 @@ iframe#music-player {
 
 /* ============================= FOOTER =============================== */
 footer {
-  background-color: #222327;
+  background-color: #CFFD5B;
   padding: 10px 0; }
   footer p {
     margin: 10px 0 0 0;
-    color: #fff; }
+    color: #000; }
   footer .sn-links {
     margin: 0;
     text-align: right; }
     footer .sn-links a {
-      color: #fff; }
+      color: #000; }
 
 /* ==================================== MEDIA QUERIES ==================================== */
 /* Extra small devices (phones, up to 480px) */
@@ -358,7 +325,7 @@ footer {
     header a.mini-nav {
       position: relative;
       top: -8px;
-      /* 	line-height: 0; */ }
+      /*  line-height: 0; */ }
 
   #main {
     min-height: 500px !important; }

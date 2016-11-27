@@ -9,8 +9,8 @@
 $(document).ready(function() {
 
     // hides the rest of the divs until they are populated
-    // $("#artist-section").hide();
-    // $("#map-section").hide();
+    $("#our-team").hide();
+    $("#parallax").hide();
 
     var js_file = document.createElement('script');
     js_file.type = 'text/javascript';
@@ -50,7 +50,7 @@ var similarArtistNameShortened;
 var similarArtistImg;
 
     $("#searchButton").on('click', function() {
-        // $("#artist-section").show("slow");
+        $("#our-team").show("slow");
 
         // $("#related-artist1").empty();
         // $("#related-artist2").empty();
@@ -186,7 +186,7 @@ var usableLatitude;
 
 $("#find-events").on("click", function() {
 
-    $("#map-section").show();
+    $("#parallax").show();
     var findArtists = $(".artist-event input:checkbox:checked").map(function(){
       return $(this).val();
         }).get();
