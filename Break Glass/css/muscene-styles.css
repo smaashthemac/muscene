@@ -289,6 +289,16 @@ iframe#music-player {
     margin: 10px 0; }
   #contact .btn {
     width: 100%; }
+  #map {
+    width: 400px;
+    height: 500px;
+    float: left; 
+    margin-left: 100px;}
+  #events {
+    width: 600px;
+    height: 500px;
+    float: left; }
+  
 
 /* ================= Contact us ======================== */
 #blog {

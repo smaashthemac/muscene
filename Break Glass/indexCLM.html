@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="zipcode" placeholder="Zip Code">
                     </div>
-                        <button type="submit" class="btn" id="searchButton">
+                        <button type="button" class="btn" id="searchButton">
                           	<span class="glyphicon glyphicon-search" id="searchIcon"></span>
                         </button>
                     </form>
@@ -126,53 +126,54 @@
 		</div><!-- end row -->
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="1">
+				<div id="staff-mem">
+					<!-- <img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="1">
 					<h3>Artist Name</h3>
 					<p>artist info</p>
 					<p class="sn-links">
 						<a href="#" title="map-lin">Map it!</a>
-					</p>
+					</p> -->
 				</div>
 			</div><!-- end 3.1 -->
 
 			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="2">
+				<div id="staff-mem0">
+					<!-- <img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="2">
 					<h3>Artist Name</h3>
 					<p>artist info</p>
 					<p class="sn-links">
 						<a href="#" title="map-lin">Map it!</a>
-					</p>
+					</p> -->
 				</div>
 
 			</div><!-- end 3.2 -->
 
 			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="3">
+				<div id="staff-mem1">
+					<!-- <img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="3">
 					<h3>Artist Name</h3>
 					<p>artist info</p>
 					<p class="sn-links">
 						<a href="#" title="map-lin">Map it!</a>
-					</p>
+					</p> -->
 				</div>
 			</div><!-- end 3.3 -->
 
 			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="4">
+				<div id="staff-mem2">
+					<!-- <img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="4">
 					<h3>Artist Name</h3>
 					<p>artist info</p>
 					<p class="sn-links">
 						<a href="#" title="map-lin">Map it!</a>
-					</p>
+					</p> -->
 				</div>
 			</div><!-- end 3.4 -->
 
 			            <div>
-                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            <!-- <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> -->
                         </div>
+                        <button type="button" id="find-events">Find</button>
 		</div><!-- end row -->
 	</div><!-- end container -->
 </div>
@@ -207,6 +208,7 @@
 			        <div class="col-md-12">
                        <h2>Your muscene map!</h2>
                         <div id="map"></div>
+                        <div id="events"></div>
 		            </div>
 			</div><!-- end row -->
 		</div><!-- end container -->
@@ -251,6 +253,7 @@
 <!-- ==================== scripts ============================ -->
 
      <script src="bootstrap/assets/js/jquery.js"></script>
+     <script src="js/appCLM.js"></script>
 	 <script src="js/waypoints.min.js"></script>
 	 <script src="js/muscene-script.js"></script>
 	 <script src="js/jquery.nav.js"></script>
