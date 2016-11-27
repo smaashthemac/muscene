@@ -21,6 +21,7 @@ $(document).ready(function() {
     var hold = [];
     var holdShortenedName = [];
     var similarArtistArray = [];
+    var bioArray = [];
 
     var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
     var userArtist = $("#artist").val().trim();
@@ -45,16 +46,16 @@ $(document).ready(function() {
     //     }
     // });
 
-var similarArtistName;
-var similarArtistNameShortened;
-var similarArtistImg;
+    var similarArtistName;
+    var similarArtistNameShortened;
+    var similarArtistImg;
 
     $("#searchButton").on('click', function() {
+        $("#our-team").removeClass("hidden");
         $("#our-team").show("slow");
 
-        // $("#related-artist1").empty();
-        // $("#related-artist2").empty();
-        // $("#related-artist3").empty();
+        $(".related-artist").empty();
+        $(".players").empty();
 
         var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
         var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
@@ -66,8 +67,8 @@ var similarArtistImg;
         //Spotify query URL for getting artist IDs
         var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + userArtist + "&type=artist";
 
-        console.log(userLocation);
-        console.log(userArtist);
+        // console.log(userLocation);
+        // console.log(userArtist);
 
         // database.ref().set({
         //     savedArtist: userArtist, 
@@ -76,17 +77,22 @@ var similarArtistImg;
 
         //Searched Artist search
         $.get(infoQueryURL, function(response){
-            console.log(response);
+            // console.log(response);
             var artistName = response.artist.name;
             var artistNameShortened = artistName.replace(/\s/g, '').toLowerCase();
             var artistURL = response.artist.url;
             //show in artist div searched for artist info from lastfm
-            // var newDiv = $("<div>");
+            var newDiv = $("<div>");
+            newDiv.append("<h2>" + artistName + "</h2>");
+            newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
+            newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>")
+            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>")
+            $("#searched-artist").html(newDiv);
             // newDiv.attr("id", artistNameShortened);
-            $("#title").append("<h2>" + artistName + "<br><br>");
-            $("#image").append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
-            $("#bio").append("<br><br><p>" + response.artist.bio.summary + "</p>");
-            $("#mapThem").append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
+            // $("#title").append("<h2>" + artistName + "<br><br>");
+            // $("#image").append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
+            // $("#bio").append("<br><br><p>" + response.artist.bio.summary + "</p>");
+            // $("#mapThem").append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
             //$("#searched-artist").append(newDiv);
             // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>" + "</p>");
             $.get(spotifyQueryURL, function(spotifyResponse){
@@ -98,20 +104,13 @@ var similarArtistImg;
                 $.get(queryURLTracks, function(trackResponse){
                     // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
                     player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+trackResponse.tracks[0].id+'" frameborder="0" allowtransparency="true"></iframe>';
-                    $("#player").append(player);
+                    $("#searched-player").append(player);
                 });
             });
         });
 
-var similarArtistName;
-var similarArtistNameShortened;
-var similarArtistImg;
-
         //Similar Artist Query
         $.get(similarQueryURL, function(response){
-
-            console.log(response);
-
             for (var i=0; i<4; i++){
                 
                 similarArtistName = response.similarartists.artist[i].name
@@ -119,23 +118,26 @@ var similarArtistImg;
                 similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
 
                 // get bio info for similar artists
-                var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + similarArtistName + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
-                $.get(infoQueryURL, function(response){
-                console.log(response);
-                console.log(response.artist.bio.summary);
-                });
+                // var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + similarArtistName + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
+                // $.get(infoQueryURL, function(response){
+                //     console.log(response);
+                //     console.log(response.artist.bio.summary);
+                //     bioArray.push(response.artist.bio.summary);  
+                // }).then(response => {
+                //     console.log(bioArray);
+                //     newDiv.html(bioArray[i]);   
+                // })
 
                 holdShortenedName.push(similarArtistNameShortened);
                 similarArtistArray.push(similarArtistName);
-                console.log(similarArtistArray);
 
                 var newDiv = $("<div>");
                 newDiv.attr("id", similarArtistNameShortened);
-                newDiv.append("<h2>" + similarArtistName + "<br><br>");
-                newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'>");
+                newDiv.append("<h2>" + similarArtistName + "</h2>");
+                newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'><br><br>");
                 //newDiv.append("<br><br><p>" + response[i].artist.bio.summary + "</p>");
-                newDiv.append("<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input>");
-                newDiv.append("<h3> <a href='" + response.similarartists.artist[i].url+ "' target='_'> LEARN MORE ABOUT THEM HERE </a></h3>");
+                // newDiv.append("<input class='artist-event' type='checkbox' value='" + similarArtistNameShortened + "'</input>");
+                // newDiv.append("<h3> <a href='" + response.similarartists.artist[i].url+ "' target='_'> LEARN MORE ABOUT THEM HERE </a></h3>");
                 $("#related-artist" + i).append(newDiv);
                 //Generating Spotify Player for first track of the similar artist
 
@@ -155,24 +157,77 @@ var similarArtistImg;
 
 
             }; //End for loop
-        }); //End similar artist AJAX call
+        })
+
+
+        fetch(similarQueryURL)
+            .then(response => response.json())
+            .then(data => {
+                const names = data.similarartists.artist.map(item => {
+                    return item.name;
+                }).slice(0, 3);
+                const tasks = names.map(name => fetch("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + name + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json"));
+                return Promise.all(tasks);
+            }).then(responses => {
+                return Promise.all(responses.map(response => response.json()));
+            }).then(bios => {
+                console.log(bios);
+                const artistBio = bios.map(x => {
+                    return x.artist.bio.summary;
+                })
+                const simArtistNameShortened = bios.map(y => {
+                    return y.artist.name.replace(/\s/g, '').toLowerCase();
+                })
+                const simArtistName = bios.map(z => {
+                    return z.artist.name;
+                })
+                for (var i = 0; i<2; i++){
+                    $("#related-artist" + i).append("<p>" + artistBio[i] + "</p>");
+                    $("#related-artist" + i).append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + simArtistNameShortened[i] + "' </input>")
+                }
+                const getSimArtistID = simArtistName.map(name => fetch("https://api.spotify.com/v1/search?q=" + name + "&type=artist"));
+                return Promise.all(getSimArtistID);
+            }).then(responses => {
+                return Promise.all(responses.map(response => response.json()));
+            }).then(artistID => {
+                console.log(artistID);
+                const id = artistID.map(thing => {
+                    return thing.artists.items[0].id;
+                })
+                console.log(id);
+                const getPlayer = id.map(spotifyID => fetch("https://api.spotify.com/v1/artists/" + spotifyID +"/top-tracks?country=US"));
+                return Promise.all(getPlayer);
+            }).then(responses => {
+                return Promise.all(responses.map(response => response.json()));
+            }).then(topTracks => {
+                const topTrackID = topTracks.map(drill => {
+                    return drill.tracks[0].id;
+                })
+                console.log(topTrackID);
+                for(var j = 0; j<2; j++){
+                    $("#related-player" + j).append('<iframe src="https://embed.spotify.com/?uri=spotify:track:'+topTrackID[j]+'" frameborder="0" allowtransparency="true"></iframe>')
+                }
+            })
+            
         return false;
     });//end of #find-artistevents click handler
 
-$(similarArtistNameShortened).on("click", function(){
-var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + similarArtistName + "&type=artist";
+$(document.body).on("click", ".staff-mem", function(){
+    var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + $("this").attr("id") + "&type=artist";
+   console.log(spotifyQueryURL)
    $.get(spotifyQueryURL, function(response){
-                    // Prints the Artist ID from the Spotify Object to console.
-                    var artistID = response.artists.items[0].id;
-                    // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
-                    var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID +"/top-tracks?country=US";
-                    $.get(queryURLTracks, function(trackResponse){
-                        // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
-                        player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
-                        // Appends the new player into the HTML
-                        newDiv.append(player);
-                    }); // End second Spotify AJAX call to get tracks
-                }); //End first Spotify AJAX call
+        // Prints the Artist ID from the Spotify Object to console.
+        var artistID = response.artists.items[0].id;
+        // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
+        var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID +"/top-tracks?country=US";
+        $.get(queryURLTracks, function(trackResponse){
+            // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
+            player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+ trackResponse.tracks[0].id +'" frameborder="0" allowtransparency="true"></iframe>';
+            // Appends the new player into the HTML
+            newDiv.append(player);
+        }); // End second Spotify AJAX call to get tracks
+    }); //End first Spotify AJAX call
+   return false;
 });
 
 var eventLocationPair; 
@@ -184,9 +239,10 @@ var usableLatitude;
 
 //Searching for events based on the selected artists
 
-$("#find-events").on("click", function() {
+$("#eventsButton").on("click", function() {
+    $("#parallax").show("slow");
 
-    $("#parallax").show();
+    $("#map-section").show();
     var findArtists = $(".artist-event input:checkbox:checked").map(function(){
       return $(this).val();
         }).get();
@@ -392,3 +448,4 @@ $(window).scroll(function() {
 });
 
 }); // End of document ready
+

@@ -36,7 +36,6 @@
 				    <br>
 					<br>
 					<br>
-					<br>
 					<div class="cont-wrapper">
 						<img src="images/logo-green.png" alt="muscene logo" id="logo">
 						<img src="images/muscene-text-green.png" alt="muscene text logo" id="logoText">
@@ -59,73 +58,65 @@
 	</div><!-- end row -->
 
 <!-- ========================= Artists ================================ -->
-<div id="our-team">
+<div id="our-team" class="hidden">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<h2 id="artists-found">artists found</h2>
+				<h2 id="artists-found">Artists Found</h2>
 			</div>
 		</div><!-- end row -->
 		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="1">
-					<h3>Artist Name</h3>
-					<p>artist info</p>
-					<p class="sn-links">
-						<a href="#" title="map-lin">Map it!</a>
-					</p>
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<div class="staff-mem" id="searched-artist">
 				</div>
 			</div><!-- end 3.1 -->
 
-			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="2">
-					<h3>Artist Name</h3>
-					<p>artist info</p>
-					<p class="sn-links">
-						<a href="#" title="map-lin">Map it!</a>
-					</p>
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<div class="staff-mem related-artist" id="related-artist0">
 				</div>
-
 			</div><!-- end 3.2 -->
 
-			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="3">
-					<h3>Artist Name</h3>
-					<p>artist info</p>
-					<p class="sn-links">
-						<a href="#" title="map-lin">Map it!</a>
-					</p>
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<div class="staff-mem related-artist" id="related-artist1">
 				</div>
 			</div><!-- end 3.3 -->
 
-			<div class="col-lg-3 col-md-3 col-sm-3">
-				<div class="staff-mem">
-					<img src=" http://placehold.it/250x250" class="img-responsive img-circle" alt="4">
-					<h3>Artist Name</h3>
-					<p>artist info</p>
-					<p class="sn-links">
-						<a href="#" title="map-lin">Map it!</a>
-					</p>
-				</div>
-			</div><!-- end 3.4 -->
-
-			            <div>
-                            <iframe id="music-player" src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
-                        </div>
-            <button id="eventsButton" type="submit" class="btn">Find Events</button>
 		</div><!-- end row -->
+
+		<div class="row"><!-- start row with players -->
+
+			<div class="col-lg-4 col-md-4 col-sm4">
+				<div class="staff-mem players" id="searched-player">
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm4">
+				<div class="staff-mem players" id="related-player0">
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm4">
+				<div class="staff-mem players" id="related-player1">
+				</div>
+			</div>
+
+		</div><!-- end row players -->
+
+		<button id="eventsButton" type="submit" class="btn">Find Events</button>
+
 	</div><!-- end container -->
 </div>
-
 <!-- ========== PARALLAX BACKGROUND STRIP - Map section ================ -->
 
 	<div id="parallax" data-speed="8" class="hidden-sm hidden-xs">
 		<div class="container">
 	 		 <div class="row">
 	 		 	<div class="col-lg-8 col-lg-offset-2">
+	 		 		<div class="col-md-6">
+	 		 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8395549037823!2d-97.73822508446527!3d30.270152381800873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b5a40259a1d5%3A0x406f3c3c36a295bb!2sMohawk+Austin!5e0!3m2!1sen!2sus!4v1480269822163" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+	 		 		</div>
+	 		 		<div class="col-md-6">
+	 		 		</div>
 			 		
 			 	</div>
  		 	</div>
