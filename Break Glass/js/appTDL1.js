@@ -19,12 +19,14 @@ $(document).ready(function() {
 
     var player;
     var hold = [];
-    var holdShortenedName = [];
     var similarArtistArray = [];
     var bioArray = [];
     var width = $(window).width();
     var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
     var userArtist = $("#artist").val().trim();
+    var similarArtistName;
+    var similarArtistNameShortened;
+    var similarArtistImg;
 
     // var config = {
     //     apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
@@ -46,9 +48,6 @@ $(document).ready(function() {
     //     }
     // });
 
-    var similarArtistName;
-    var similarArtistNameShortened;
-    var similarArtistImg;
 
     $("#searchButton").on('click', function() {
         $("#our-team").removeClass("hidden");
@@ -87,16 +86,9 @@ $(document).ready(function() {
             newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
             newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>")
             newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>")
-            newDiv.attr("value", artistName);
+            newDiv.attr("value", artistNameShortened);
             newDiv.addClass("artist");
             $("#searched-artist").html(newDiv);
-            // newDiv.attr("id", artistNameShortened);
-            // $("#title").append("<h2>" + artistName + "<br><br>");
-            // $("#image").append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
-            // $("#bio").append("<br><br><p>" + response.artist.bio.summary + "</p>");
-            // $("#mapThem").append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>");//.attr("id", artistNameShortened);
-            //$("#searched-artist").append(newDiv);
-            // $(".testimonial_thumbnails_ind_carousel_caption a").html("<a target='_blank' href='" + artistURL + "'>" + artistName +"'s LastFM Page</a>" + "</p>");
             $.get(spotifyQueryURL, function(spotifyResponse){
                 // Prints the Artist ID from the Spotify Object to console.
                 var artistID = spotifyResponse.artists.items[0].id;
@@ -114,17 +106,12 @@ $(document).ready(function() {
         //Similar Artist Query
         $.get(similarQueryURL, function(response){
             for (var i=0; i<2; i++){
-                
                 similarArtistName = response.similarartists.artist[i].name
                 similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
                 similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
-
-                holdShortenedName.push(similarArtistNameShortened);
-                similarArtistArray.push(similarArtistName);
-
                 var newDiv = $("<div>");
-                newDiv.attr("id", similarArtistNameShortened);
-                newDiv.attr("value", similarArtistName);
+                // newDiv.attr("id", similarArtistNameShortened);
+                newDiv.attr("value", similarArtistNameShortened);
                 newDiv.addClass("artist");
                 newDiv.append("<h2>" + similarArtistName + "</h2>");
                 newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'><br><br>");
@@ -154,7 +141,7 @@ $(document).ready(function() {
                 const simArtistName = bios.map(z => {
                     return z.artist.name;
                 })
-                for (var i = 0; i<2; i++){
+                for (var i = 0; i<3; i++){
                     $("#related-artist" + i).append("<p>" + artistBio[i] + "</p>");
                     $("#related-artist" + i).append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + simArtistNameShortened[i] + "' </input>")
                 }
@@ -177,7 +164,7 @@ $(document).ready(function() {
                     return drill.tracks[0].id;
                 })
                 console.log(topTrackID);
-                for(var j = 0; j<2; j++){
+                for(var j = 0; j<3; j++){
                     $(".players" + j).append('<iframe src="https://embed.spotify.com/?uri=spotify:track:'+topTrackID[j]+'" frameborder="0" allowtransparency="true"></iframe>')
                 }
             })
@@ -186,7 +173,7 @@ $(document).ready(function() {
     });//end of #find-artistevents click handler
 
     $(document.body).on("click", ".artist", function(){
-        var x = $(this).val();
+        var x = $(this).attr("value");
         hold.push(x);
         console.log(hold);
     })
