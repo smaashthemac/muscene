@@ -55,6 +55,7 @@ $(document).ready(function() {
         // $("#artist-section").show("slow");
 
         $(".related-artist").empty();
+        $(".players").empty();
 
         var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
         var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
@@ -103,7 +104,7 @@ $(document).ready(function() {
                 $.get(queryURLTracks, function(trackResponse){
                     // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
                     player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+trackResponse.tracks[0].id+'" frameborder="0" allowtransparency="true"></iframe>';
-                    newDiv.append(player);
+                    $("#searched-player").append(player);
                 });
             });
         });
@@ -180,7 +181,7 @@ $(document).ready(function() {
                 const simArtistName = bios.map(z => {
                     return z.artist.name;
                 })
-                for (var i = 0; i<3; i++){
+                for (var i = 0; i<2; i++){
                     $("#related-artist" + i).append("<p>" + artistBio[i] + "</p>");
                     $("#related-artist" + i).append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + simArtistNameShortened[i] + "' </input>")
                 }
@@ -203,8 +204,8 @@ $(document).ready(function() {
                     return drill.tracks[0].id;
                 })
                 console.log(topTrackID);
-                for(var j = 0; j<3; j++){
-                    $("#related-artist" + j).append('<iframe src="https://embed.spotify.com/?uri=spotify:track:'+topTrackID[j]+'" frameborder="0" allowtransparency="true"></iframe>')
+                for(var j = 0; j<2; j++){
+                    $("#related-player" + j).append('<iframe src="https://embed.spotify.com/?uri=spotify:track:'+topTrackID[j]+'" frameborder="0" allowtransparency="true"></iframe>')
                 }
             })
             
