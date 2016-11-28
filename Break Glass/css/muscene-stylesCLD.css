@@ -142,6 +142,30 @@ p {
     margin: 5px; 
 }
 
+/* link styles */
+a:focus, a:hover {
+    color: #777;
+    text-decoration: none;
+}
+a:active, a:hover {
+    outline: 0;
+    text-decoration: none;
+}
+a {
+    color: #CFFD5B;
+    text-decoration: none;
+}
+
+/* ====================== Artist selection ============ */
+
+.staff-mem:hover {
+  border: #CFFD5B 1px solid;
+}
+
+.staff-mem:active {
+  border: #CFFD5B 1px solid;
+}
+
 /* ====================== Main ========================= */
 #main {
   background: url(../images/crowd1.jpeg) 0 0 no-repeat fixed;
@@ -171,7 +195,7 @@ p {
   #main p.btn-wrp {
     text-align: center;
   }
-  #artist, #zipcode, #searchButton {
+  #artist, #location, #searchButton {
   background-color: transparent;
   font-size: 14px;
   text-transform: uppercase;

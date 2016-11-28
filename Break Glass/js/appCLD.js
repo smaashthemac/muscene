@@ -23,7 +23,7 @@ $(document).ready(function() {
     var similarArtistArray = [];
     var bioArray = [];
 
-    var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
+    var userLocation = $("#location").val().trim(); // Variable for the searched location 
     var userArtist = $("#artist").val().trim();
 
     // var config = {
@@ -40,9 +40,9 @@ $(document).ready(function() {
     // database.ref().on("value", function(snapshot) {
     //     if (snapshot.child("savedArtist").exists() && snapshot.child("savedLocation").exists()) {
     //         $("#artist").empty();
-    //         $("#zipcode").empty();
+    //         $("#location").empty();
     //         $("#artist").append(savedArtist);
-    //         $("#zipcode").append(savedLocation);
+    //         $("#location").append(savedLocation);
     //     }
     // });
 
@@ -57,7 +57,7 @@ $(document).ready(function() {
         $(".related-artist").empty();
         $(".players").empty();
 
-        var userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
+        var userLocation = $("#location").val().trim(); // Variable for the searched location 
         var userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
     
         //Last FM query URL for getting searched artist info
@@ -86,7 +86,7 @@ $(document).ready(function() {
             newDiv.append("<h2>" + artistName + "</h2>");
             newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
             newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>")
-            newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>")
+            //newDiv.append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + artistNameShortened + "' </input>")
             $("#searched-artist").html(newDiv);
             // newDiv.attr("id", artistNameShortened);
             // $("#title").append("<h2>" + artistName + "<br><br>");
@@ -183,7 +183,7 @@ $(document).ready(function() {
                 })
                 for (var i = 0; i<2; i++){
                     $("#related-artist" + i).append("<p>" + artistBio[i] + "</p>");
-                    $("#related-artist" + i).append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + simArtistNameShortened[i] + "' </input>")
+                    //$("#related-artist" + i).append("<p> LIKE THEM? SELECT TO FIND THEIR EVENTS! " + "<input class = 'artist-event' type='checkbox' value='" + simArtistNameShortened[i] + "' </input>")
                 }
                 const getSimArtistID = simArtistName.map(name => fetch("https://api.spotify.com/v1/search?q=" + name + "&type=artist"));
                 return Promise.all(getSimArtistID);
