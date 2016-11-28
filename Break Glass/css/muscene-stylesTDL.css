@@ -41,10 +41,11 @@ h2 {
   color: #fff;
 }
 
-h2#artists-found {
+h2#artists {
     padding-top: 10px;
     color: #CFFD5B;
     margin-bottom: 50px;
+    margin-top: -20px;
     font-size: 50px;
 }
 
@@ -60,14 +61,63 @@ p {
   line-height: 26px;
   margin-bottom: 32px; 
 }
+
+/* ============= modal styles ============= */
+
+.modal-header,
+.modal-body,
+.modal-footer,
+.modal-content {
+  background-color: #000;
+  text-align: center;
+}
+
+h3.modal-title {
+  color: #fff;
+}
+
+p.modal-text {
+  color: #fff;
+  font-size: 18px;
+  text-transform: none;
+  font-family: 'Dosis', sans-serif;
+}
+
+ #modalButton {
+    background-color: #CFFD5B;
+    color: #000;
+    font-size: 18px;
+    margin-top: 30px;
+  }
+   #modalButton:hover {
+    background-color: transparent;
+    color: #CFFD5B;
+    border: #CFFD5B 1px solid;
+  }
+
+/* link styles */
+a:focus, a:hover {
+    color: #777;
+    text-decoration: none;
+}
+a:active, a:hover {
+    outline: 0;
+    text-decoration: none;
+}
+a {
+    color: #CFFD5B;
+    text-decoration: none;
+}
+
 /*Tim's added stuff*/
 /*================================*/
 .hidden{
   visbility: hidden;
 }
 
-.selected {
- border: #CFFD5B solid 4px;
+.selected,
+.selected:hover {
+ border: #CFFD5B solid 2px;
 }
 
 #our-team.container{
@@ -84,6 +134,7 @@ p {
   padding: 20px;
   box-sizing: border-box; 
   color: #CFFD5B;
+  width: 100%;
   }
 .form-control:focus {
   border-color: #CFFD5B;
@@ -233,11 +284,12 @@ p {
   background-size: cover;
   min-height: 350px; }
   #parallax h2 {
-    color: #fff;
-    margin-top: 130px;
-    text-align: center;
-    font-weight: 700;
-    text-shadow: 0px 1px 1px black; }
+    padding-top: 10px;
+    color: #CFFD5B;
+    margin-bottom: 50px;
+    margin-top: -20px;
+    font-size: 50px;
+  }
 
 /* ================= Artists section ==================== */
 #our-team {
@@ -268,13 +320,15 @@ iframe#music-player {
 }
 
  #eventsButton {
-    background-color: transparent;
-    border: white 1px solid;
-    font-size: 20px;
+    background-color: #CFFD5B;
+    color: #000;
+    font-size: 18px;
     margin-top: 30px;
   }
    #eventsButton:hover {
+    background-color: transparent;
     color: #CFFD5B;
+    border: #CFFD5B 1px solid;
   }
 
 /* ================= Map section ======================== */
