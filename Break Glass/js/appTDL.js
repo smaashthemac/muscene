@@ -69,6 +69,7 @@ $(document).ready(function() {
         eventLocations=[];
         hold = [];
         //$(".related-artist").empty();
+        $(".staff-mem").empty();
         $(".players").empty();
 
         userLocation = $("#location").val().trim(); // Variable for the searched location 
