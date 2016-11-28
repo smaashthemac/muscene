@@ -84,9 +84,9 @@ $(document).ready(function() {
         });
     
         //Last FM query URL for getting searched artist info
-        var infoQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
+        var infoQueryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json";
         //Last FM query URL for getting similar artists 
-        var similarQueryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json&limit=4";
+        var similarQueryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" + userArtist + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json&limit=4";
         //Spotify query URL for getting artist IDs
         var spotifyQueryURL = "https://api.spotify.com/v1/search?q=" + userArtist + "&type=artist";
 
@@ -142,7 +142,7 @@ $(document).ready(function() {
                 const names = data.similarartists.artist.map(item => {
                     return item.name;
                 }).slice(0, 3);
-                const tasks = names.map(name => fetch("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + name + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json"));
+                const tasks = names.map(name => fetch("https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + name + "&api_key=1472636e9d44c81a12cdfb216ce752ac&format=json"));
                 return Promise.all(tasks);
             }).then(responses => {
                 return Promise.all(responses.map(response => response.json()));
