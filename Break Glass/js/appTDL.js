@@ -68,10 +68,10 @@ $(document).ready(function() {
         $("#parallax").hide("slow");
         eventLocations=[];
         hold = [];
-        $(".related-artist").empty();
+        //$(".related-artist").empty();
         $(".players").empty();
 
-        userLocation = $("#zipcode").val().trim(); // Variable for the searched location 
+        userLocation = $("#location").val().trim(); // Variable for the searched location 
         userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
 
         console.log(userLocation);
