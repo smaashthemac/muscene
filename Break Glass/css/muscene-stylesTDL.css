@@ -41,7 +41,8 @@ h2 {
   color: #fff;
 }
 
-h2#artists-found {
+h2#artist,
+h2#location {
     padding-top: 10px;
     color: #CFFD5B;
     margin-bottom: 50px;
@@ -202,7 +203,7 @@ a {
   #main p.btn-wrp {
     text-align: center;
   }
-  #artist, #zipcode, #searchButton {
+  #artist, #location, #searchButton {
   background-color: transparent;
   font-size: 14px;
   text-transform: uppercase;
