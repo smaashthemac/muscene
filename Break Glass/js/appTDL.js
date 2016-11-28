@@ -7,13 +7,12 @@ function initMap() {
         zoom: 6,
         });
   
-    setMarkers(map);
+  setMarkers(map);
 
 };
 
 function setMarkers(map) {
 
-    console.log(eventLocations);
     for (var i = 0; i < eventLocations.length; i++) {
         var event = eventLocations[i];
         console.log(event)
@@ -257,14 +256,14 @@ $(document).ready(function() {
             usableLatitude = response.results[0].geometry.location.lat;
             console.log(usableLongitude);
             console.log(usableLatitude);
-        })//End AJAX call to Google Maps for Geocode
+        });//End AJAX call to Google Maps for Geocode
 
     var js_file = document.createElement('script');
     js_file.type = 'text/javascript';
     js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
     document.getElementsByTagName('head')[0].appendChild(js_file);
 
-    }); // End of find event click handler
+}); // End of find event click handler
 
     // /* Nav Bar */
     // $(window).scroll(function() {
