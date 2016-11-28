@@ -221,6 +221,11 @@ $(document).ready(function() {
             $.ajax({url: eventURL, method: "GET"}).done(function(response) {
                 console.log(response);
                 console.log(response.length);
+
+                if (response.length === 0) {
+                       $("#events").append("<h2> Sorry, no events in your area.</h2>");
+               } else {
+
                 for (var i=0; i<response.length; i++) {
                     eventLocationPair = {
                         longitude: (response[i].venue.longitude), 
@@ -239,6 +244,7 @@ $(document).ready(function() {
                     } else {
                         $("#events").append("Tickets are not available :(");
                     }
+                }
                 } // response length for loop
             }) // AJAX Call
         } // selectedArtists for loop
