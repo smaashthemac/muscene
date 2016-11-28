@@ -1,1 +1,1 @@
-<?php include_once("Break-Glass/indexTDL.html"); ?>
+<?php include_once("indexTDL.html"); ?>
