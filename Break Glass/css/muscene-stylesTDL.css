@@ -60,11 +60,20 @@ p {
   line-height: 26px;
   margin-bottom: 32px; 
 }
-
+/*Tim's added stuff*/
+/*================================*/
 .hidden{
   visbility: hidden;
 }
 
+.selected {
+ border: #CFFD5B solid 4px;
+}
+
+#our-team.container{
+  height: 100%;
+}
+/*================================*/
 .form-control {
   border-radius: 0;
   border: 1px solid #CFFD5B;
@@ -105,7 +114,7 @@ p {
 }
 
   .sn-links a:hover {
-    color: #CFFD5B; 
+    color: #CFFD5B;
 }
 
   .sn-links a .fa {
@@ -217,7 +226,10 @@ p {
 #parallax {
   position: relative;
   width: 100%;
-  background: url(../images/crowd2.jpg) no-repeat 0 0 fixed;
+  /*TIM ADDED TO MAKE MORE READABLE*/
+  /*===============================*/
+  background: #000;
+  /*===============================*/
   background-size: cover;
   min-height: 350px; }
   #parallax h2 {
@@ -275,7 +287,17 @@ iframe#music-player {
     margin: 10px 0; }
   #contact .btn {
     width: 100%; }
-
+/*TIM ADDED*/
+/*=================================*/
+  #map {
+    width: 500px;
+    height: 500px;
+    float: left; }
+  #events {
+    width: 500px;
+    height: 500px;
+    float: left; }
+/*=================================*/
 /* ================= Contact us ======================== */
 #blog {
   padding: 40px 0 40px 0;

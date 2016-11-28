@@ -21,6 +21,9 @@
 
     <!-- Custom Styling and CSS Overrides -->
     <link href="css/muscene-stylesTDL.css" rel="stylesheet">
+    
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
   </head>
 
@@ -42,10 +45,10 @@
 						<h2>Find your new favorite artists</h2>
 						<form class="form-inline" id="form">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="artist" placeholder="Artist">
+                        <input type="text" class="form-control" id="artist" placeholder="Artist" value="Run the Jewels">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="zipcode" placeholder="Zip Code">
+                        <input type="text" class="form-control" id="zipcode" placeholder="City, State" value="Austin, TX">
                     </div>
                         <button type="submit" class="btn" id="searchButton">
                           	<span class="glyphicon glyphicon-search" id="searchIcon"></span>
@@ -67,7 +70,7 @@
 		</div><!-- end row -->
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-4">
-				<div class="staff-me" id="searched-artist">
+				<div class="staff-mem" id="searched-artist">
 				</div>
 				<div class="row players player-searched hidden" id="searched-player">
 				</div>
@@ -102,7 +105,7 @@
 			</div>
 
 			<div class="col-lg-4 col-md-4 col-sm4">
-				<div class="staff-mem players players0 displayed" id="related-player1">
+				<div class="staff-mem players players1 displayed" id="related-player1">
 				</div>
 			</div>
 
@@ -115,16 +118,14 @@
 </div>
 <!-- ========== PARALLAX BACKGROUND STRIP - Map section ================ -->
 
-	<div id="parallax" data-speed="8" class="hidden-sm hidden-xs">
-		<div class="container">
-	 		 <div class="row">
-	 		 	<div class="col-lg-8 col-lg-offset-2">
-	 		 		<div class="col-md-6">
-	 		 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8395549037823!2d-97.73822508446527!3d30.270152381800873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b5a40259a1d5%3A0x406f3c3c36a295bb!2sMohawk+Austin!5e0!3m2!1sen!2sus!4v1480269822163" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-	 		 		</div>
-	 		 		<div class="col-md-6">
-	 		 		</div>
-			 		
+<div id="parallax" data-speed="8" class="hidden-sm hidden-xs">
+        <div class="container">
+             <div class="row">
+                <div class="col-lg-11">
+                    <div class="col-md-6" id="map">
+                    </div>
+                    <div class="col-md-6" id="events">
+                    </div>
 			 	</div>
  		 	</div>
  		    <br>
@@ -143,7 +144,7 @@
 				<h3 id="copyright">&copy; copyright muscene 2016</h3>
 			</div>
 			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"><br>
-				<p class="sn-links"><a href="https://www.twitter.com/muscene_ut" title="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
+				<p class="sn-links"><a href="https://www.twitter.com/muscene_ut" target="_ blank" title="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
 				<a href="#" title="linked-in"><i class="fa fa-linkedin-square"></i></a></p>
 			</div>
 		</div>
@@ -154,13 +155,13 @@
 
 <!-- ==================== scripts ============================ -->
 
-     <script src="bootstrap/assets/js/jquery.js"></script>
-	 <script src="js/waypoints.min.js"></script>
-	 <script src="js/appTDL1.js"></script>
-	 <script src="js/jquery.nav.js"></script>
-	 <script src="js/jquery.scrollTo.js"></script>
-	 <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-	 <script src="bootstrap/assets/js/holder.js"></script>
-
+    <script src="bootstrap/assets/js/jquery.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/appTDL.js"></script>
+	<script src="js/jquery.nav.js"></script>
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bootstrap/assets/js/holder.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpums-_v62OkuCyuLBXAquuHBCRKnPBoE"></script>
   </body>
 </html>
