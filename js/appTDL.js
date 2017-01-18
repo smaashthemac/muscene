@@ -1,16 +1,5 @@
 var map;
 
-function initMap() {
-
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: usableLatitude, lng: usableLongitude},
-        zoom: 6,
-        });
-  
-  setMarkers(map);
-
-};
-
 function setMarkers(map) {
 
     for (var i = 0; i < eventLocations.length; i++) {
@@ -21,6 +10,19 @@ function setMarkers(map) {
              map: map
         });
     }
+};
+
+function initMap() {
+    
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: usableLatitude, lng: usableLongitude},
+        zoom: 6,
+        });
+
+    console.log(map);
+  
+  setMarkers(map);
+
 };
 
 var userLocation;
@@ -61,7 +63,22 @@ $(document).ready(function() {
 
     var database = firebase.database(); // database variable
 
+     function removeScript() {
+                var head = document.getElementsByTagName("head")[0];
+                var scriptToRemove = document.getElementById('mapScript');
+
+                if (scriptToRemove){
+                head.removeChild(scriptToRemove);
+                console.log('Removed the script');
+                }else{
+                 console.log('It has already been removed');
+                }
+             }
+
     $("#searchButton").on('click', function(event) {
+        $("#map").empty();
+       removeScript();
+
         event.preventDefault();
         $("#our-team").removeClass("hidden");
         $("#our-team").show("slow");
@@ -200,16 +217,6 @@ $(document).ready(function() {
         console.log(hold);
     }); //End click event handler for adding selected artists to array
 
-
-    // var eventLocationPair; 
-    // var selectedArtists = ['run the jewels', 'tycho', 'grouplove'];
-    // var eventLocations = [];
-
-    // var usableLongitude; //Variables for the Google geocoding search
-    // var usableLatitude;
-
-    //Searching for events based on the selected artists
-    // $("#map").append("<img src='" + mapURL +  "' alt='google map'>");
         //Searching for events based on the selected artists
     $("#eventsButton").on("click", function() {
         $("#parallax").show("slow");
@@ -262,6 +269,7 @@ $(document).ready(function() {
     var js_file = document.createElement('script');
     js_file.type = 'text/javascript';
     js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
+    js_file.id = "mapScript";
     document.getElementsByTagName('head')[0].appendChild(js_file);
 
 }); // End of find event click handler
