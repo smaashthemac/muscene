@@ -77,7 +77,6 @@ $(document).ready(function() {
 
 	$("#searchButton").on('click', function(event) {
 		$("#map").empty();
-		$(".footer").addClass("hidden");
 	   removeScript();
 
 		event.preventDefault();
@@ -120,7 +119,8 @@ $(document).ready(function() {
 			newDiv.append("<img src='" + response.artist.image[3]["#text"] + "' alt='slider 01' class='img-circle'>");
 			newDiv.append("<br><br><p>" + response.artist.bio.summary + "</p>")
 			newDiv.append("<p> LIKE THIS ARTIST? SELECT TO FIND THEIR EVENTS!")
-			newDiv.attr("value", artistNameShortened);
+			// newDiv.attr("value", artistNameShortened);
+			newDiv.attr("value", artistName);
 			newDiv.addClass("artist");
 			$("#searched-artist").html(newDiv);
 			$.get(spotifyQueryURL, function(spotifyResponse){
@@ -144,8 +144,8 @@ $(document).ready(function() {
 				similarArtistNameShortened = similarArtistName.replace(/\s/g, '').toLowerCase();
 				similarArtistImg = response.similarartists.artist[i].image[3]["#text"];
 				var newDiv = $("<div>");
-				// newDiv.attr("id", similarArtistNameShortened);
-				newDiv.attr("value", similarArtistNameShortened);
+				// newDiv.attr("value", similarArtistNameShortened);
+				newDiv.attr("value", similarArtistName);
 				newDiv.addClass("artist");
 				newDiv.append("<h2>" + similarArtistName + "</h2>");
 				newDiv.append("<img class= 'img-circle' src='" + similarArtistImg + "'><br><br>");
@@ -206,7 +206,7 @@ $(document).ready(function() {
 
 	//Click event handler that adds selected artists
 	$(document.body).on("click", ".artist", function(){
-		var x = $(this).attr("value");
+		var x = $(this).attr("value").replace(/ /g,"%20");
 		var found = jQuery.inArray(x, hold);
 		if (found >= 0) {
 			hold.splice(found, 1);
@@ -221,68 +221,80 @@ $(document).ready(function() {
 		//Searching for events based on the selected artists
 	$("#eventsButton").on("click", function() {
 		$("#parallax").show("slow");
+		$("warning").empty();
 		$("#events").empty();
+		var key = "pAhaycRkmhZWoCeb"
+		
+		hold.map((artist) => {
+			var eventURL = `http://api.songkick.com/api/3.0/search/artists.json?query=${artist}&apikey=${key}&jsoncallback=?`;
+			console.log(eventURL)
+			$.getJSON(eventURL, (data) => {
+				console.log(data);
+			});
+		});
+	});//End of event handler for #eventsButton
 
-		for (var i=0; i < hold.length; i++) {
-			var eventURL = "https://api.bandsintown.com/artists/" + hold[i] + "/events/search.json?api_version=2.0&app_id=MUSCENE&location=" + userLocation +"&radius=150";
-			console.log(eventURL);
-			$.ajax({url: eventURL, method: "GET"}).done(function(response) {
-				console.log(response);
-				console.log(response.length);
 
-				if (response.length === 0) {
-					   $("#events").append("<h2> Sorry, no events in your area.</h2>");
-			   } else {
+	// 	for (var i=0; i < hold.length; i++) {
+	// 		var eventURL = "https://api.bandsintown.com/artists/" + hold[i] + "/events/search.json?api_version=2.0&app_id=MUSCENE&location=" + userLocation +"&radius=150";
+	// 		console.log(eventURL);
+	// 		$.ajax({url: eventURL, method: "GET"}).done(function(response) {
+	// 			console.log(response);
+	// 			console.log(response.length);
 
-				for (var i=0; i<response.length; i++) {
-					eventLocationPair = {
-						longitude: (response[i].venue.longitude), 
-						latitude: (response[i].venue.latitude)
-					}; // End of eventLocationPair object 
-					console.log(eventLocationPair);
-					eventLocations.push(eventLocationPair);
+	// 			if (response.length === 0) {
+	// 				   $("#events").append("<h2> Sorry, no events in your area.</h2>");
+	// 		   } else {
+
+	// 			for (var i=0; i<response.length; i++) {
+	// 				eventLocationPair = {
+	// 					longitude: (response[i].venue.longitude), 
+	// 					latitude: (response[i].venue.latitude)
+	// 				}; // End of eventLocationPair object 
+	// 				console.log(eventLocationPair);
+	// 				eventLocations.push(eventLocationPair);
 					
-					$("#events").append("<h3>" + (i+1) + ". " + response[i].artists[0].name);
-					$("#events").append("<h4>" + response[i].formatted_datetime);
-					$("#events").append("<h4>" + response[i].formatted_location);
-					$("#events").append("<h4>" + response[i].venue.name + "<br>"); 
+	// 				$("#events").append("<h3>" + (i+1) + ". " + response[i].artists[0].name);
+	// 				$("#events").append("<h4>" + response[i].formatted_datetime);
+	// 				$("#events").append("<h4>" + response[i].formatted_location);
+	// 				$("#events").append("<h4>" + response[i].venue.name + "<br>"); 
 		 
-					if (response[i].ticket_status=== "available") {
-						$("#events").append("<h4><a target='_blank' href='" + response[i].ticket_url + "'>Buy tickets</a></h6>");
-					} else {
-						$("#events").append("Tickets are not available :(");
-					}
-				}
-				} // response length for loop
-			}) // AJAX Call
-		} // selectedArtists for loop
+	// 				if (response[i].ticket_status=== "available") {
+	// 					$("#events").append("<h4><a target='_blank' href='" + response[i].ticket_url + "'>Buy tickets</a></h6>");
+	// 				} else {
+	// 					$("#events").append("Tickets are not available :(");
+	// 				}
+	// 			}
+	// 			} // response length for loop
+	// 		}) // AJAX Call
+	// 	} // selectedArtists for loop
 
-		var geoURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userLocation +"&key=AIzaSyDnb-B2_SlUBZ8hZtUuWPNTxyVtQU5CunE";
-		//AJAX call to Google Maps
-		$.ajax({url: geoURL, method: "GET"}).done(function(response) {
-			console.log(response);
-			usableLongitude = response.results[0].geometry.location.lng;
-			usableLatitude = response.results[0].geometry.location.lat;
-			console.log(usableLongitude);
-			console.log(usableLatitude);
-		});//End AJAX call to Google Maps for Geocode
+	// 	var geoURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userLocation +"&key=AIzaSyDnb-B2_SlUBZ8hZtUuWPNTxyVtQU5CunE";
+	// 	//AJAX call to Google Maps
+	// 	$.ajax({url: geoURL, method: "GET"}).done(function(response) {
+	// 		console.log(response);
+	// 		usableLongitude = response.results[0].geometry.location.lng;
+	// 		usableLatitude = response.results[0].geometry.location.lat;
+	// 		console.log(usableLongitude);
+	// 		console.log(usableLatitude);
+	// 	});//End AJAX call to Google Maps for Geocode
 
-	var js_file = document.createElement('script');
-	js_file.type = 'text/javascript';
-	js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
-	js_file.id = "mapScript";
-	document.getElementsByTagName('head')[0].appendChild(js_file);
+	// var js_file = document.createElement('script');
+	// js_file.type = 'text/javascript';
+	// js_file.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCK0yMImFRuMfNUN3W2k6MglVnP_bTQFII&callback=initMap';
+	// js_file.id = "mapScript";
+	// document.getElementsByTagName('head')[0].appendChild(js_file);
 
-}); // End of find event click handler
+// }); // End of find event click handler
 
 	// /* Nav Bar */
 	// $(window).scroll(function() {
-	//     if ($(".navbar").offset().top > 50) {
-	//         $('#nav').addClass('affix');
-	//         $(".navbar-fixed-top").addClass("top-nav-collapse");
-	//     } else {
-	//         $('#nav').removeClass('affix');
-	//         $(".navbar-fixed-top").removeClass("top-nav-collapse");
-	//     }   
+	// 	if ($(".navbar").offset().top > 50) {
+	// 		$('#nav').addClass('affix');
+	// 		$(".navbar-fixed-top").addClass("top-nav-collapse");
+	// 	} else {
+	// 		$('#nav').removeClass('affix');
+	// 		$(".navbar-fixed-top").removeClass("top-nav-collapse");
+	// 	}   
 	// });// End function ($)
 });
