@@ -542,14 +542,14 @@ footer .sn-links a {
 				width: 70%;
 		}
 		#location {
-				width: 70%;
 				margin-left: 17%;
+				width: 70%;
 		}
 		#searchButton {
 				margin-left: 43%;
 		}
 		#our-team {
-				margin-top: 15%;
+				margin-top: 20%;
 		}
 		#map {
 				width: 100%;
@@ -562,7 +562,21 @@ footer .sn-links a {
 		}
 }
 
-@media (max-width: 991px) {
+@media (min-width: 481px) and (max-width: 767px) {
+	#main {
+				min-height: 500px !important;
+		}
+		#main .cont-wrapper {
+				top: 100px;
+		}
+		#main p.intro {
+				text-align: center;
+				font-size: 32px;
+				line-height: 38px;
+		}
+		.btn-db {
+				margin-top: 10px;
+		}
 		#modalButton {
 				display: none;
 		}
@@ -577,11 +591,86 @@ footer .sn-links a {
 				width: 70%;
 		}
 		#location {
-				width: 70%;
 				margin-left: 17%;
+				width: 70%;
 		}
 		#searchButton {
-				margin-left: 47%;
+				margin-left: 43%;
+		}
+		#our-team {
+				margin-top: 20%;
+		}
+		#map {
+				width: 100%;
+		}
+		#events {
+				margin-top: 10%;
+				font-size: 0.8em;
+				width: 100%;
+				line-height: 1.5em;
+		}
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+		#modalButton {
+				display: none;
+		}
+		footer {
+				display: none;
+		}
+		#searchButton {
+				margin-left: 2%;		
+		}
+		#our-team {
+				margin-top: 20%;
+		}
+		#map {
+				width: 100%;
+		}
+		#events {
+				margin-top: 10%;
+				font-size: 0.8em;
+				width: 100%;
+				line-height: 1.5em;
+		}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+		.cont-wrapper{
+			display: list-item;
+		}
+		#modalButton {
+				margin-left: 40%;
+		}
+		#logo {
+				width: 15%;
+				margin: 0 auto;
+				display: block;
+		}
+		#logoText {
+				width: 35%;
+				margin: 0 auto;
+				display: block;
+				margin-top: 15px;
+		}
+		.form-group {
+				display: flex;
+		}
+		#form {
+				display: flex;
+				justify-content: space-around;
+				margin-left: 10%;
+		}
+		#artist {
+				flex: 1;
+
+		}
+		#location {
+				flex: 1;
+		}
+		#searchButton {
+				margin-right: 30%;
 		}
 		#our-team {
 				margin-top: 15%;
