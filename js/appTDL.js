@@ -20,8 +20,8 @@ function initMap() {
 		});
 
 	console.log(map);
-  
-  setMarkers(map);
+	
+	setMarkers(map);
 
 };
 
@@ -52,11 +52,11 @@ $(document).ready(function() {
 	var similarArtistImg;
 
 	var config = {
-		apiKey: "AIzaSyAfp1Bs3v2vGmBFzFurtDXduezcb8_ifWs",
-		authDomain: "music-app-14ddc.firebaseapp.com",
-		databaseURL: "https://music-app-14ddc.firebaseio.com",
-		storageBucket: "",
-		messagingSenderId: "95008115181"
+		apiKey: "AIzaSyDdHMfIXBwn-e56D7ZkxcQDKpLOABrxOQ4",
+		authDomain: "artist-map-80d5f.firebaseapp.com",
+		databaseURL: "https://artist-map-80d5f.firebaseio.com",
+		storageBucket: "artist-map-80d5f.appspot.com",
+		messagingSenderId: "480937359271"
 	};
 
 	firebase.initializeApp(config); // intializing firebase for our user data 
@@ -78,7 +78,7 @@ $(document).ready(function() {
 	$("#searchButton").on('click', function(event) {
 		$("#map").empty();
 		$(".footer").addClass("hidden");
-	   removeScript();
+		 removeScript();
 
 		event.preventDefault();
 		$("#our-team").removeClass("hidden");
@@ -231,8 +231,8 @@ $(document).ready(function() {
 				console.log(response.length);
 
 				if (response.length === 0) {
-					   $("#events").append("<h2> Sorry, no events in your area.</h2>");
-			   } else {
+						 $("#events").append("<h2> Sorry, no events in your area.</h2>");
+				 } else {
 
 				for (var i=0; i<response.length; i++) {
 					eventLocationPair = {
