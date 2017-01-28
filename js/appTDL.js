@@ -52,11 +52,16 @@ $(document).ready(function() {
 	var similarArtistImg;
 
 	var config = {
-		apiKey: "AIzaSyDdHMfIXBwn-e56D7ZkxcQDKpLOABrxOQ4",
-		authDomain: "artist-map-80d5f.firebaseapp.com",
-		databaseURL: "https://artist-map-80d5f.firebaseio.com",
-		storageBucket: "artist-map-80d5f.appspot.com",
-		messagingSenderId: "480937359271"
+		// apiKey: "AIzaSyDdHMfIXBwn-e56D7ZkxcQDKpLOABrxOQ4",
+		// authDomain: "artist-map-80d5f.firebaseapp.com",
+		// databaseURL: "https://artist-map-80d5f.firebaseio.com",
+		// storageBucket: "artist-map-80d5f.appspot.com",
+		// messagingSenderId: "480937359271"
+		process.env.apiKey,
+		process.env.authDomain,
+		process.env.databaseURL,
+		process.env.storageBucket,
+		process.env.messagingSenderId
 	};
 
 	firebase.initializeApp(config); // intializing firebase for our user data 
