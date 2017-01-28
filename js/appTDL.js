@@ -34,7 +34,6 @@ var eventLocations = [];
 var usableLongitude; //Variables for the Google geocoding search
 var usableLatitude;
 
-
 $(document).ready(function() {
 
 	// hides the rest of the divs until they are populated
@@ -51,12 +50,18 @@ $(document).ready(function() {
 	var similarArtistNameShortened;
 	var similarArtistImg;
 
+	var apikey 						= configKeys.apiKey;
+	var authdomain 				= configKeys.authDomain;
+	var databaseurl 			= configKeys.databaseURL;
+	var storagebucket 		= configKeys.storageBucket;
+	var messagingsenderid = configKeys.messagingSenderId;
+
 	var config = {
-		apiKey: "AIzaSyDdHMfIXBwn-e56D7ZkxcQDKpLOABrxOQ4",
-		authDomain: "artist-map-80d5f.firebaseapp.com",
-		databaseURL: "https://artist-map-80d5f.firebaseio.com",
-		storageBucket: "artist-map-80d5f.appspot.com",
-		messagingSenderId: "480937359271"
+		apiKey: apikey,
+		authDomain: authdomain,
+		databaseURL: databaseurl,
+		storageBucket: storagebucket,
+		messagingSenderId: messagingsenderid
 	};
 
 	firebase.initializeApp(config); // intializing firebase for our user data 
