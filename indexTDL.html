@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="/ico/favicon.png">
 
     <title>Muscene</title>
 
@@ -104,96 +98,186 @@
 
 			<div class="col-lg-4 col-md-4 col-sm-4">
 				<div class="staff-mem" id="related-artist0">
-				</div>
-				<div class="row players players0 hidden" id="related-player0">
-				</div>
-			</div><!-- end 3.2 -->
 
-			<div class="col-lg-4 col-md-4 col-sm-4">
-				<div class="staff-mem" id="related-artist1">
-				</div>
-				<div class="row players players1 hidden" id="related-player1">
-				</div>
-			</div><!-- end 3.3 -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="/ico/favicon.png">
+	<script src="bootstrap/assets/js/jquery.js"></script>
+	<title>Muscene</title>
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+	<!-- Custom Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Dosis|Unica+One" rel="stylesheet">
+	<!--font-family: 'Dosis', sans-serif; (body)
+				font-family: 'Unica One', cursive; (headings) -->
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<!-- Custom Styling and CSS Overrides -->
+	<link href="css/muscene-stylesTDL.css" rel="stylesheet">
+	<!-- Firebase Reference -->
+	<script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+</head>
 
-		</div><!-- end row -->
-		<!-- start row with players -->
-		<div class="row">
+<body data-spy="scroll" data-target="#navigation">
+	<!-- wrapper for all content -->
+	<div id="content">
+		<!-- mainImage -->
+		<div id="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<br>
+						<br>
+						<br>
+						<div class="cont-wrapper">
+							<img src="images/logo-green.png" alt="muscene logo" id="logo">
+							<img src="images/muscene-text-green.png" alt="muscene text logo" id="logoText">
+							<h2>Find your new favorite artists</h2>
+							<form class="form-inline" id="form">
+								<div class="form-group">
+									<input type="text" class="form-control" id="artist" placeholder="Artist">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="location" placeholder="City, State">
+								</div>
+								<button type="button" class="btn" id="searchButton">
+									<span class="glyphicon glyphicon-search" id="searchIcon"></span>
+								</button>
+							</form>
+							<button id="modalButton" type="button" class="btn" data-toggle="modal" data-target="#myModal">HOW DOES IT WORK?</button>
+						</div>
+						<!-- end cont wrapper -->
+					</div>
+					<!-- end 8 -->
 
-			<div class="col-lg-4 col-md-4 col-sm4">
-				<div class="staff-mem players player-searched displayed" id="searched-player">
 				</div>
 			</div>
-
-			<div class="col-lg-4 col-md-4 col-sm4">
-				<div class="staff-mem players players0 displayed" id="related-player0">
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-4 col-sm4">
-				<div class="staff-mem players players1 displayed" id="related-player1">
-				</div>
-			</div>
-
+			<!-- end container -->
 		</div>
-		<!-- end row players -->
-
-		<button id="eventsButton" type="submit" class="btn">Find Events</button>
-
-	</div><!-- end container -->
-</div>
-<!-- ========== PARALLAX BACKGROUND STRIP - Map section ================ -->
-
-<div id="parallax" data-speed="8">
-        <div class="container">
-
-        	<div class="row">
-				 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-					<h2>Upcoming Events</h2>
-				 </div>
-		 	</div>
-
-             <div class="row">
-                <div class="col-lg-11">
-                    <div class="col-md-6" id="map">
-                    </div>
-                    <div class="col-md-6" id="events">
-                    </div>
-			 	</div>
- 		 	</div>
- 		    <br>
- 		    <br>
- 		    <br>
- 		    <br>
- 		    <br>
+		<!-- end main row -->
+		<!-- ========================= Modal ================================== -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<!-- modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2 class="modal-title">HOW MUSCENE WORKS</h2>
+					</div>
+					<div class="modal-body">
+						<p class="modal-text">Muscene makes it easy to find upcoming events from artists that are similar to the ones you love. Enter your location and a favorite artist to see what’s coming up.</p>
+						<p class="modal-text">Your searched artist and the two most similar will show up; you'll be able to read about them, listen to their #1 song, and select the artists you want to map. </p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
 		</div>
+		<!-- ========================= Artists ================================ -->
+		<div class="hidden" id="our-team">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+						<h2 id="artists-found">Artists Found</h2>
+					</div>
+				</div>
+				<!-- end row -->
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="staff-mem" id="searched-artist">
+						</div>
+						<div class="row players player-searched hidden" id="searched-player">
+						</div>
+					</div>
+					<!-- end 3.1 -->
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="staff-mem" id="related-artist0">
+						</div>
+						<div class="row players players0 hidden" id="related-player0">
+						</div>
+					</div>
+					<!-- end 3.2 -->
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="staff-mem" id="related-artist1">
+						</div>
+						<div class="row players players1 hidden" id="related-player1">
+						</div>
+					</div>
+					<!-- end 3.3 -->
+				</div>
+				<!-- end row -->
+				<!-- start row with players -->
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm4">
+						<div class="staff-mem players player-searched displayed" id="searched-player">
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm4">
+						<div class="staff-mem players players0 displayed" id="related-player0">
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm4">
+						<div class="staff-mem players players1 displayed" id="related-player1">
+						</div>
+					</div>
+				</div>
+				<!-- end row players -->
+				<div id="warning"></div>
+				<button id="eventsButton" type="submit" class="btn">Find Events</button>
+			</div>
+			<!-- end container -->
+		</div>
+		<!-- ========== PARALLAX BACKGROUND STRIP - Map section ================ -->
+		<div id="parallax" data-speed="8">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+						<h2>Upcoming Events</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-11">
+						<div class="col-md-6" id="map">
+						</div>
+						<div class="col-md-6" id="events">
+						</div>
+					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+		<!-- =========== Footer ============ -->
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<h3 id="copyright">&copy; copyright muscene 2016</h3>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<br>
+						<p class="sn-links"><a href="https://www.twitter.com/muscene_ut" target="_ blank" title="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
+							<a href="#" title="linked-in"><i class="fa fa-linkedin-square"></i></a></p>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</div>
+	<!-- end content wrapper -->
+	<!-- ==================== scripts ============================ -->
+	
+	<script type="text/javascript" src="js/waypoints.min.js"></script>
+	<script type="text/javascript" src="js/appTDL.js"></script>
+	<script type="text/javascript" src="js/jquery.nav.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo.js"></script>
+	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap/assets/js/holder.js"></script>
+</body>
 
-<!-- =========== Footer ============ -->
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<h3 id="copyright">&copy; copyright muscene 2016</h3>
-			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><br>
-				<p class="sn-links"><a href="https://www.twitter.com/muscene_ut" target="_ blank" title="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
-				<a href="#" title="linked-in"><i class="fa fa-linkedin-square"></i></a></p>
-			</div>
-		</div>
-	</div>
-</footer>
-
-</div><!-- end content wrapper -->
-
-<!-- ==================== scripts ============================ -->
-
-    <script src="bootstrap/assets/js/jquery.js"></script>
-	<script src="js/waypoints.min.js"></script>
-	<script src="js/appTDL.js"></script>
-	<script src="js/jquery.nav.js"></script>
-	<script src="js/jquery.scrollTo.js"></script>
-	<script src="bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="bootstrap/assets/js/holder.js"></script>
-  </body>
 </html>
