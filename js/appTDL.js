@@ -90,6 +90,7 @@ $(document).ready(function() {
         $(".players").empty();
 
         userLocation = $("#location").val().trim(); // Variable for the searched location 
+        console.log("User location is " + userLocation);
         userArtist = $("#artist").val().trim(); // Variable for the searchedArtist
 
         console.log(userLocation);
